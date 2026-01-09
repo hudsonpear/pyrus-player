@@ -1,0 +1,109 @@
+{
+  "name": "pyrusplayer",
+  "productName": "Pyrus Player",
+  "version": "1.0.0",
+  "description": "Media Player App",
+  "author": "Hudson Pear",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dist": "electron-builder",
+    "postinstall": "electron-rebuild"
+  },
+  "build": {
+    "appId": "com.hudsonpear.pyrusplayer",
+    "productName": "Pyrus Player",
+    "asarUnpack": [
+      "changelog.txt",
+      "ffmpeg-static",
+      "ffprobe-static",
+      "*.node"
+    ],
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "hudsonpear",
+        "repo": "pyrus-player"
+      }
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "renderer.js",
+      "index.html",
+      "preload.js",
+      "initDatabase.js",
+      "jsmediatags.min.js",
+      "changelog.txt",
+      "style.css",
+      "images/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "images/pplogo.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.music",
+      "icon": "images/pplogo.icns"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Audio",
+      "icon": "images/icons/256x256.png"
+    },
+    "fileAssociations": [
+      {
+        "ext": [
+          "mp3",
+          "wav",
+          "ogg",
+          "flac",
+          "aac",
+          "m4a"
+        ],
+        "name": "Audio File",
+        "description": "Audio file played with Pyrus Player",
+        "icon": "images/256x256.png"
+      }
+    ]
+  },
+  "keywords": [],
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "electron": "^38.3.0",
+    "electron-builder": "^26.0.12",
+    "electron-rebuild": "^3.2.9"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.4.1",
+    "chokidar": "^4.0.3",
+    "electron-updater": "^6.6.2",
+    "ffmpeg-static": "^5.2.0",
+    "ffprobe-static": "^3.1.0",
+    "fs-extra": "^11.3.2",
+    "jsmediatags": "^3.9.7",
+    "music-metadata": "^11.9.0",
+    "sharp": "^0.34.4"
+  }
+}

@@ -1,0 +1,7 @@
+Pyrus Player 1.0.0
+2026
+Created by: Hudson Pear
+
+>10/01/2026 Version 1.0.0
+
+* Pyrus Player Launched.

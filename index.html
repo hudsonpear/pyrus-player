@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Pyrus Player</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        html,body {
+            background-color: rgb(58,58,58)!important;
+        }
+        body.loading {
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <!----------------------------MENUBAR------------------------------>
+    <div id="menu_bar" class="">
+        <div class="menu_bar_left" role="menu">
+            <button class="menubar_btn hidden" id="menu_btn">
+                <svg stroke="white" class="menuIcon " width="25" viewBox="0 0 24 24">
+                    <path d="M4 6H20M4 12H20M4 18H20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <div id="sideBarBtn" class="active" title="Hide/Show Bars">
+                <svg width="20px" fill="white" viewBox="0 -960 960 960">
+                    <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
+                </svg>
+            </div>
+            <div id="pyrusBtnDiv" class="">
+                <img class="ppLogo" src="images/pplogo.ico" alt="">
+                <div id="menu_bar_title_div" class="">
+                    <span id="menu_bar_title">Pyrus Player</span>
+                </div> 
+            </div>
+        </div>
+        <div id="menubarTitle"></div>
+        <div class="menu_bar_right">
+            <button class="menubar_btn" id="minimize_btn">
+                <svg fill="white" width="13" viewBox="0 0 512 512">
+                    <path d="M464 352H48c-26.5 0-48 21.5-48 48v32c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48v-32c0-26.5-21.5-48-48-48z"/>
+                </svg>
+            </button>
+            <button class="menubar_btn" id="max_unmax_btn">
+                <svg id="menubar_maximize_icon" class="" width="18" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M22 5C22 3.34315 20.6569 2 19 2H5C3.34315 2 2 3.34315 2 5V19C2 20.6569 3.34315 22 5 22H19C20.6569 22 22 20.6569 22 19V5ZM20 5C20 4.44772 19.5523 4 19 4H5C4.44772 4 4 4.44772 4 5V19C4 19.5523 4.44772 20 5 20H19C19.5523 20 20 19.5523 20 19V5Z" 
+                    fill="white"/>
+                </svg>
+                <svg id="menubar_restore_icon" class="hidden" width="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.08496 4C5.29088 3.4174 5.8465 3 6.49961 3H9.99961C11.6565 3 12.9996 4.34315 12.9996 6V9.5C12.9996 10.1531 12.5822 10.7087 11.9996 10.9146V6C11.9996 4.89543 11.1042 4 9.99961 4H5.08496Z" 
+                    fill="white"/>
+                    <path d="M4.5 5H9.5C10.3284 5 11 5.67157 11 6.5V11.5C11 12.3284 10.3284 13 9.5 13H4.5C3.67157 13 3 12.3284 3 11.5V6.5C3 5.67157 3.67157 5 4.5 5ZM4.5 6C4.22386 6 4 6.22386 4 6.5V11.5C4 11.7761 4.22386 12 4.5 12H9.5C9.77614 12 10 11.7761 10 11.5V6.5C10 6.22386 9.77614 6 9.5 6H4.5Z" 
+                    fill="white"/>
+                </svg>
+            </button>
+            <button class="menubar_closeBtn2" id="close_btn">
+                <svg width="21" viewBox="0 0 24 24">
+                    <path stroke="white" d="M18 18L12 12M12 12L6 6M12 12L18 6M12 12L6 18"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+    </div><!----------------------------/MENUBAR------------------------------>
+
+    <!----------------------------PYRUS MENU------------------------------>
+    <div id="pyrusMenuDiv">
+        <div id="downLeft">
+            <div id="selectMenuWrapper">
+                <div id="selectDropdown">
+
+                    <div id="addFileMenuBtn" class="pyrusMenuItem" >
+                        <svg class="menuSvgItem" viewBox="0 0 24 24" fill="none">
+                            <path d="M13 3H8.2C7.0799 3 6.51984 3 6.09202 3.21799C5.71569 3.40973 5.40973 3.71569 5.21799 4.09202C5 4.51984 5 5.0799 5 6.2V17.8C5 18.9201 5 19.4802 5.21799 19.908C5.40973 20.2843 5.71569 20.5903 6.09202 20.782C6.51984 21 7.0799 21 8.2 21H12M13 3L19 9M13 3V7.4C13 7.96005 13 8.24008 13.109 8.45399C13.2049 8.64215 13.3578 8.79513 13.546 8.89101C13.7599 9 14.0399 9 14.6 9H19M19 9V12M17 19H21M19 17V21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Open Media File</span>
+                    </div>
+                    <div class="ctx-separator"></div>
+
+                    <div id="menuAddSong" class="pyrusMenuItem">
+                        <svg class="menuSvgItem2" viewBox="0 -960 960 960">
+                            <path d="M226.67-80q-27 0-46.84-19.83Q160-119.67 160-146.67v-666.66q0-27 19.83-46.84Q199.67-880 226.67-880h319.66q13.34 0 25.84 5.33 12.5 5.34 21.5 14.34l186.66 186.66q9 9 14.34 21.5 5.33 12.5 5.33 25.84v479.66q0 27-19.83 46.84Q760.33-80 733.33-80H226.67Zm314-576q0 14.33 9.5 23.83 9.5 9.5 23.83 9.5h159.33L540.67-813.33V-656ZM428-194.67q40 0 68-27.66Q524-250 524-290v-184.67h84q14.33 0 23.83-9.5 9.5-9.5 9.5-23.83 0-14.33-9.5-23.83-9.5-9.5-23.83-9.5h-90.67q-14.33 0-23.83 9.5-9.5 9.5-9.5 23.83v143q-11-8.67-25.5-13.17t-30.5-4.5q-38.67 0-65.33 27Q336-328.67 336-290q0 39.33 26.67 67.33 26.66 28 65.33 28Z"/>
+                        </svg>
+                        <div>Add Songs</div>
+                    </div>
+
+                    <div id="menuAddVideo" class="pyrusMenuItem">
+                        <svg class="menuSvgItem2" viewBox="0 -960 960 960">
+                            <path d="M226.67-80q-27 0-46.84-19.83Q160-119.67 160-146.67v-666.66q0-27 19.83-46.84Q199.67-880 226.67-880h319.66q13.34 0 25.84 5.33 12.5 5.34 21.5 14.34l186.66 186.66q9 9 14.34 21.5 5.33 12.5 5.33 25.84v479.66q0 27-19.83 46.84Q760.33-80 733.33-80H226.67Zm314-576q0 14.33 9.5 23.83 9.5 9.5 23.83 9.5h159.33L540.67-813.33V-656Zm-186 416h170q15 0 25.83-10.83 10.83-10.84 10.83-25.84v-50l55.67 31q8.67 5 16.5 0t7.83-14.66v-99.34q0-9.66-7.83-14.66t-16.5 0l-55.67 31v-50q0-15-10.83-25.84Q539.67-480 524.67-480h-170q-15 0-25.84 10.83Q318-458.33 318-443.33v166.66q0 15 10.83 25.84Q339.67-240 354.67-240Z"/>
+                        </svg>
+                        <div>Add Videos</div>
+                    </div>
+
+                    <div class="ctx-separator"></div>
+
+                    <div id="menuAddMixFolder" class="pyrusMenuItem">
+                        <svg class="menuSvgItem mixedColor" viewBox="0 -960 960 960">
+                            <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h207q16 0 30.5 6t25.5 17l57 57h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Z"/>
+                        </svg>
+                        Add Folders
+                    </div>
+
+                    <div  id="menuAddAudioFolder" class="pyrusMenuItem">
+                        <svg class="menuSvgItem audioColor" viewBox="0 -960 960 960">
+                            <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h207q16 0 30.5 6t25.5 17l57 57h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Z"/>
+                        </svg>
+                        <span>Add Audio Folders</span>
+                    </div>
+
+                    <div id="menuAddVideoFolder" class="pyrusMenuItem ">
+                        <svg class="menuSvgItem videoColor" viewBox="0 -960 960 960">
+                            <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h207q16 0 30.5 6t25.5 17l57 57h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Z"/>
+                        </svg>
+                        <span>Add Video Folders</span>
+                    </div>
+
+                    <div class="ctx-separator"></div>
+                    <div id="menuSettBtn" class="pyrusMenuItem " data-select="">
+                        <svg class="menuSvgItem" viewBox="3 3 18 18" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M11.0175 19C10.6601 19 10.3552 18.7347 10.297 18.373C10.2434 18.0804 10.038 17.8413 9.76171 17.75C9.53658 17.6707 9.31645 17.5772 9.10261 17.47C8.84815 17.3365 8.54289 17.3565 8.30701 17.522C8.02156 17.7325 7.62943 17.6999 7.38076 17.445L6.41356 16.453C6.15326 16.186 6.11944 15.7651 6.33361 15.458C6.49878 15.2105 6.52257 14.8914 6.39601 14.621C6.31262 14.4332 6.23906 14.2409 6.17566 14.045C6.08485 13.7363 5.8342 13.5051 5.52533 13.445C5.15287 13.384 4.8779 13.0559 4.87501 12.669V11.428C4.87303 10.9821 5.18705 10.6007 5.61601 10.528C5.94143 10.4645 6.21316 10.2359 6.33751 9.921C6.37456 9.83233 6.41356 9.74433 6.45451 9.657C6.61989 9.33044 6.59705 8.93711 6.39503 8.633C6.1424 8.27288 6.18119 7.77809 6.48668 7.464L7.19746 6.735C7.54802 6.37532 8.1009 6.32877 8.50396 6.625L8.52638 6.641C8.82735 6.84876 9.21033 6.88639 9.54428 6.741C9.90155 6.60911 10.1649 6.29424 10.2375 5.912L10.2473 5.878C10.3275 5.37197 10.7536 5.00021 11.2535 5H12.1115C12.6248 4.99976 13.0629 5.38057 13.1469 5.9L13.1625 5.97C13.2314 6.33617 13.4811 6.63922 13.8216 6.77C14.1498 6.91447 14.5272 6.87674 14.822 6.67L14.8707 6.634C15.2842 6.32834 15.8528 6.37535 16.2133 6.745L16.8675 7.417C17.1954 7.75516 17.2366 8.28693 16.965 8.674C16.7522 8.99752 16.7251 9.41325 16.8938 9.763L16.9358 9.863C17.0724 10.2045 17.3681 10.452 17.7216 10.521C18.1837 10.5983 18.5235 11.0069 18.525 11.487V12.6C18.5249 13.0234 18.2263 13.3846 17.8191 13.454C17.4842 13.5199 17.2114 13.7686 17.1083 14.102C17.0628 14.2353 17.0121 14.3687 16.9562 14.502C16.8261 14.795 16.855 15.1364 17.0323 15.402C17.2662 15.7358 17.2299 16.1943 16.9465 16.485L16.0388 17.417C15.7792 17.6832 15.3698 17.7175 15.0716 17.498C14.8226 17.3235 14.5001 17.3043 14.2331 17.448C14.0428 17.5447 13.8475 17.6305 13.6481 17.705C13.3692 17.8037 13.1636 18.0485 13.1099 18.346C13.053 18.7203 12.7401 18.9972 12.3708 19H11.0175Z"
+                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M13.9747 12C13.9747 13.2885 12.9563 14.333 11.7 14.333C10.4437 14.333 9.42533 13.2885 9.42533 12C9.42533 10.7115 10.4437 9.66699 11.7 9.66699C12.9563 9.66699 13.9747 10.7115 13.9747 12Z"
+                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Settings</span>
+                    </div>
+                    <div class="ctx-separator"></div>
+                    <div id="menuReloadApp" class="pyrusMenuItem">
+                        <svg class="menuSvgItem2" viewBox="0 -960 960 960">
+                            <path d="M482-160q-134 0-228-93t-94-227v-7l-64 64-56-56 160-160 160 160-56 56-64-64v7q0 100 70.5 170T482-240q26 0 51-6t49-18l60 60q-38 22-78 33t-82 11Zm278-161L600-481l56-56 64 64v-7q0-100-70.5-170T478-720q-26 0-51 6t-49 18l-60-60q38-22 78-33t82-11q134 0 228 93t94 227v7l64-64 56 56-160 160Z"/>
+                        </svg>
+                        <span>Reload App</span>
+                    </div>
+                    <div id="menuOpenConsole" class="pyrusMenuItem hidden">
+                        <svg class="menuSvgItem2" viewBox="0 -960 960 960">
+                            <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H160v400Zm140-40-56-56 103-104-104-104 57-56 160 160-160 160Zm180 0v-80h240v80H480Z"/>
+                        </svg>
+                        <span>Open Console</span>
+                    </div>
+                    <div class="ctx-separator"></div>
+                    <div id="menuChangeBtn" class="pyrusMenuItem">
+                        <svg class="menuSvgItem2" viewBox="0 -960 960 960">
+                            <path d="M320-440h320v-80H320v80Zm0 120h320v-80H320v80Zm0 120h200v-80H320v80ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z"/>
+                        </svg>
+                        <span>Changelog</span>
+                    </div>
+                    <div id="menuAboutBtn" class="pyrusMenuItem">
+                        <svg class="menuSvgItem" viewBox="0 -960 960 960" fill="white">
+                            <path d="M480-280q17 0 28.5-11.5T520-320v-160q0-17-11.5-28.5T480-520q-17 0-28.5 11.5T440-480v160q0 17 11.5 28.5T480-280Zm0-320q17 0 28.5-11.5T520-640q0-17-11.5-28.5T480-680q-17 0-28.5 11.5T440-640q0 17 11.5 28.5T480-600Zm0 520q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/>
+                        </svg>
+                        <span>About</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!----------------------------/PYRUS MENU------------------------------>
+
+
+
+    
+    <div id="middleNSideDiv">
+    <!----------------------------SIDE BAR------------------------------>
+        <div id="sideBarDiv" class="">
+            <div id="">
+                <div id="homeSideBtn" class="sideBarItem">
+                    <div class="sideBarItemInside">
+                        <svg class="sideBarSvg3 sideBarSvg3-Home" viewBox="0 -960 960 960">
+                            <path d="M160-200v-360q0-19 8.5-36t23.5-28l240-180q21-16 48-16t48 16l240 180q15 11 23.5 28t8.5 36v360q0 33-23.5 56.5T720-120H600q-17 0-28.5-11.5T560-160v-200q0-17-11.5-28.5T520-400h-80q-17 0-28.5 11.5T400-360v200q0 17-11.5 28.5T360-120H240q-33 0-56.5-23.5T160-200Z"/>
+                        </svg>
+                        <span class="sideBarItemText">Home</span>
+                    </div>
+                </div>
+                <div id="searchSideBtn" class="sideBarItem">
+                    <div class="sideBarItemInside">
+                        <svg class="sideBarSvg3" viewBox="0 -960 960 960">
+                            <path d="M380-320q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l224 224q11 11 11 28t-11 28q-11 11-28 11t-28-11L532-372q-30 24-69 38t-83 14Zm0-80q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+                        </svg>
+                        <span class="sideBarItemText">Search</span>
+                    </div>
+                </div>
+                <div id="songsSideBtn" class="sideBarItem">
+                    <div class="sideBarItemInside">
+                        <svg class="sideBarSvg3" viewBox="0 -960 960 960">
+                            <path d="M400-120q-66 0-113-47t-47-113q0-66 47-113t113-47q23 0 42.5 5.5T480-418v-382q0-17 11.5-28.5T520-840h160q17 0 28.5 11.5T720-800v80q0 17-11.5 28.5T680-680H560v400q0 66-47 113t-113 47Z"/>
+                        </svg>
+                        <span class="sideBarItemText">Songs</span>
+                    </div>
+                </div>
+                <div id="videosSideBtn" class="sideBarItem">
+                    <div class="sideBarItemInside">
+                        <svg class="sideBarSvg3" viewBox="0 -960 960 960">
+                            <path d="M146.67-160q-27 0-46.84-19.83Q80-199.67 80-226.67v-506.66q0-27 19.83-46.84Q119.67-800 146.67-800h506.66q27 0 46.84 19.83Q720-760.33 720-733.33V-530l131.33-131.33q8-8 18.34-3.98Q880-661.28 880-650v340q0 11.28-10.33 15.31-10.34 4.02-18.34-3.98L720-430v203.33q0 27-19.83 46.84Q680.33-160 653.33-160H146.67Zm0-66.67h506.66v-506.66H146.67v506.66Zm0 0v-506.66 506.66Z"/>
+                        </svg>
+                        <span class="sideBarItemText">Videos</span>
+                        <div id="videoDotDiv" class=""></div>
+                    </div>
+                </div>
+                <div id="playlistsSideBtn" class="sideBarItem">
+                    <div class="sideBarItemInside">
+                        <svg class="sideBarSvg3" viewBox="0 -960 960 960">
+                            <path d="M640-160q-50 0-85-35t-35-85q0-50 35-85t85-35q11 0 21 1.5t19 6.5v-288q0-17 11.5-28.5T720-720h120q17 0 28.5 11.5T880-680q0 17-11.5 28.5T840-640h-80v360q0 50-35 85t-85 35ZM160-320q-17 0-28.5-11.5T120-360q0-17 11.5-28.5T160-400h240q17 0 28.5 11.5T440-360q0 17-11.5 28.5T400-320H160Zm0-160q-17 0-28.5-11.5T120-520q0-17 11.5-28.5T160-560h400q17 0 28.5 11.5T600-520q0 17-11.5 28.5T560-480H160Zm0-160q-17 0-28.5-11.5T120-680q0-17 11.5-28.5T160-720h400q17 0 28.5 11.5T600-680q0 17-11.5 28.5T560-640H160Z"/>
+                        </svg>
+                        <span class="sideBarItemText">Playlists</span>
+                    </div>
+                </div>
+                <div id="foldersSideBtn" class="sideBarItem">
+                    <div class="sideBarItemInside">
+                        <svg class="sideBarSvg3" viewBox="0 -960 960 960">
+                            <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h207q16 0 30.5 6t25.5 17l57 57h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Z"/>
+                        </svg>
+                        <span class="sideBarItemText">Folders</span>
+                    </div>
+                </div>
+                <div id="artistsSideBtn" class="sideBarItem">
+                    <div class="sideBarItemInside">
+                        <svg class="sideBarSvg3" viewBox="0 -960 960 960">
+                            <path d="M700-160q-42 0-71-29t-29-71q0-42 29-71t71-29q8 0 18 1.5t22 6.5v-168q0-17 11.5-28.5T780-560h60q17 0 28.5 11.5T880-520q0 17-11.5 28.5T840-480h-40v220q0 42-29 71t-71 29ZM440-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160q-17 0-28.5-11.5T120-200v-72q0-35 17.5-63t46.5-43q62-31 126-46.5T440-440q28 0 55.5 3t55.5 9q17 4 21.5 21t-9.5 31q-21 25-31.5 54.5T521-260q0 13 1.5 25.5T528-209q5 18-4.5 33.5T497-160H160Z"/>
+                        </svg>
+                        <span class="sideBarItemText">Artists</span>
+                    </div>
+                </div>
+                <div id="albumsSideBtn" class="sideBarItem">
+                    <div class="sideBarItemInside">
+                        <svg class="sideBarSvg3" viewBox="0 -960 960 960">
+                            <path d="M480-300q75 0 127.5-52.5T660-480q0-75-52.5-127.5T480-660q-75 0-127.5 52.5T300-480q0 75 52.5 127.5T480-300Zm0-140q-17 0-28.5-11.5T440-480q0-17 11.5-28.5T480-520q17 0 28.5 11.5T520-480q0 17-11.5 28.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/>
+                        </svg>
+                        <span class="sideBarItemText">Albums</span>
+                    </div>
+                </div>
+                <div id="genresSideBtn" class="sideBarItem">
+                    <div class="sideBarItemInside">
+                        <svg class="sideBarSvg3" viewBox="0 -960 960 960">
+                            <path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q17 0 28.5 11.5T520-840v291q18 11 29 28.5t11 40.5q0 33-23.5 56.5T480-400q-33 0-56.5-23.5T400-480q0-23 11-41t29-28v-86q-52 14-86 56.5T320-480q0 66 47 113t113 47q66 0 113-47t47-113q0-26-7.5-48T612-570q-10-14-9-31t12-28q12-12 28.5-12t26.5 14q23 31 36.5 68t13.5 79q0 100-70 170t-170 70q-100 0-170-70t-70-170q0-90 57-156.5T440-717v-81q-119 15-199.5 105T160-480q0 134 93 227t227 93q134 0 227-93t93-227q0-58-19-109.5T727-683q-11-13-11-30t12-29q12-12 28.5-11.5T784-740q45 53 70.5 119T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/>
+                        </svg>
+                        <span class="sideBarItemText">Genres</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="settingsSideBtn" class="sideBarItem">
+                <div class="sideBarItemInside">
+                    <svg class="sideBarSvg3" viewBox="0 -960 960 960">
+                        <path d="M433-80q-27 0-46.5-18T363-142l-9-66q-13-5-24.5-12T307-235l-62 26q-25 11-50 2t-39-32l-47-82q-14-23-8-49t27-43l53-40q-1-7-1-13.5v-27q0-6.5 1-13.5l-53-40q-21-17-27-43t8-49l47-82q14-23 39-32t50 2l62 26q11-8 23-15t24-12l9-66q4-26 23.5-44t46.5-18h94q27 0 46.5 18t23.5 44l9 66q13 5 24.5 12t22.5 15l62-26q25-11 50-2t39 32l47 82q14 23 8 49t-27 43l-53 40q1 7 1 13.5v27q0 6.5-2 13.5l53 40q21 17 27 43t-8 49l-48 82q-14 23-39 32t-50-2l-60-26q-11 8-23 15t-24 12l-9 66q-4 26-23.5 44T527-80h-94Zm49-260q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Z"/>
+                    </svg>
+                    <span class="sideBarItemText">Settings</span>
+                </div>
+            </div>
+
+        </div>
+        <!----------------------------/SIDE BAR------------------------------>
+
+        <!----------------------------MIDDLE CONTENT DIV------------------------------>
+        <div id="middleDivContent" class="">
+
+            <!-- WRAPPER FOR ALL MIDDLE ITEMS (keeps layout stable) -->
+            <div id="middleContentWrapper">
+
+                <div id="errorMsgDisplayDiv"></div>
+                
+                <div id="homeContentDiv" class="middleContentItems active">
+                    
+                    <div class="homeTitleDiv hidden">
+                        <span>Home</span>
+                    </div>
+
+                    <div id="homeAddBtnsDiv">
+                        
+                        <div class="homeButtons">
+
+                            <div id="addSongsBtn" class="foldersBtnsDiv">
+                                <svg class="middleSvg" viewBox="0 -960 960 960">
+                                    <path d="M226.67-80q-27 0-46.84-19.83Q160-119.67 160-146.67v-666.66q0-27 19.83-46.84Q199.67-880 226.67-880h319.66q13.34 0 25.84 5.33 12.5 5.34 21.5 14.34l186.66 186.66q9 9 14.34 21.5 5.33 12.5 5.33 25.84v479.66q0 27-19.83 46.84Q760.33-80 733.33-80H226.67Zm314-576q0 14.33 9.5 23.83 9.5 9.5 23.83 9.5h159.33L540.67-813.33V-656ZM428-194.67q40 0 68-27.66Q524-250 524-290v-184.67h84q14.33 0 23.83-9.5 9.5-9.5 9.5-23.83 0-14.33-9.5-23.83-9.5-9.5-23.83-9.5h-90.67q-14.33 0-23.83 9.5-9.5 9.5-9.5 23.83v143q-11-8.67-25.5-13.17t-30.5-4.5q-38.67 0-65.33 27Q336-328.67 336-290q0 39.33 26.67 67.33 26.66 28 65.33 28Z"/>
+                                </svg>
+                                <div>Add Songs</div>
+                            </div>
+
+                            <div id="addVideosBtn" class="foldersBtnsDiv">
+                                <svg class="middleSvg" viewBox="0 -960 960 960">
+                                    <path d="M226.67-80q-27 0-46.84-19.83Q160-119.67 160-146.67v-666.66q0-27 19.83-46.84Q199.67-880 226.67-880h319.66q13.34 0 25.84 5.33 12.5 5.34 21.5 14.34l186.66 186.66q9 9 14.34 21.5 5.33 12.5 5.33 25.84v479.66q0 27-19.83 46.84Q760.33-80 733.33-80H226.67Zm314-576q0 14.33 9.5 23.83 9.5 9.5 23.83 9.5h159.33L540.67-813.33V-656Zm-186 416h170q15 0 25.83-10.83 10.83-10.84 10.83-25.84v-50l55.67 31q8.67 5 16.5 0t7.83-14.66v-99.34q0-9.66-7.83-14.66t-16.5 0l-55.67 31v-50q0-15-10.83-25.84Q539.67-480 524.67-480h-170q-15 0-25.84 10.83Q318-458.33 318-443.33v166.66q0 15 10.83 25.84Q339.67-240 354.67-240Z"/>
+                                </svg>
+                                <div>Add Videos</div>
+                            </div>
+
+                        </div>
+                        <div class="homeButtons">
+                            <div id="addFoldersBtn" class="foldersBtnsDiv">
+                                <svg class="middleSvg mixedColor" viewBox="0 -960 960 960">
+                                    <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h207q16 0 30.5 6t25.5 17l57 57h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Z"/>
+                                </svg>
+                                Add Folders
+                            </div>
+
+                            <div id="addAudioFoldersBtn" class="foldersBtnsDiv">
+                                <svg class="middleSvg audioColor" viewBox="0 -960 960 960">
+                                    <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h207q16 0 30.5 6t25.5 17l57 57h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Z"/>
+                                </svg>
+                                Audio Folders
+                            </div>
+
+                            <div id="addVideoFoldersBtn" class="foldersBtnsDiv">
+                                <svg class="middleSvg videoColor" viewBox="0 -960 960 960">
+                                    <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h207q16 0 30.5 6t25.5 17l57 57h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Z"/>
+                                </svg>
+                                Video Folders
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="mostPlayed" class="homeTitleDiv">
+                        <span class="homeSectionTitle">Most Played</span>
+                        <div id="mostPlayedSongs" class=""></div>
+                    </div>
+
+                    <div id="recentlyPlayed" class="homeTitleDiv">
+                        <span class="homeSectionTitle">Recently Played</span>
+                        <div id="recentlyPlayedSongs" class=""></div>
+                    </div>
+
+                    <div id="recentlyAdded" class="homeTitleDiv">
+                        <span class="homeSectionTitle">Recently Added</span>
+                        <!-- <div class="content"></div> -->
+                         <div id="recentlyAddedSongs" class=""></div>
+                    </div>
+
+                    <div id="recentPlaylistsDiv" class="homeTitleDiv">
+                        <span class="homeSectionTitle">Recent Playlists</span>
+                        <div id="recentPlaylists" class=""></div>
+                    </div>
+
+                    <div id="recentlyFavorited" class="homeTitleDiv">
+                        <span class="homeSectionTitle">Recently Favorited</span>
+                        <div id="recentlyFavoritedSongs" class=""></div>
+                    </div>
+
+                    <div id="mostFavoritedArtistsDiv" class="homeTitleDiv">
+                        <span class="homeSectionTitle">Most Favorited Artists</span>
+                        <div id="mostFavoritedArtists" class=""></div>
+                    </div>
+
+                    <div id="welcomeMessage" class="" style="display:none;">
+                        <div class="welcomeTopMsg">Welcome to the <span class="logoColor">Pyrus</span> Player</div>
+                        <div class="welcomeMiddleMsg">Add songs or videos to start using the player</div>
+                    </div>
+
+                </div>
+
+                <div id="searchContentDiv" class="middleContentItems">
+
+                    <div class="searchTopBar">
+
+                        <div class="">
+
+                            <div class="searchDiv">
+                                <label class="search-field">
+                                    <svg class="search-icon" viewBox="0 -960 960 960">
+                                        <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+                                    </svg>
+
+                                    <input
+                                        id="searchInput"
+                                        class="search-input"
+                                        type="search"
+                                        placeholder="Search..."
+                                        aria-label="Search"
+                                        autocomplete="off"
+                                    />
+
+                                    <button type="button" class="clear-btn" aria-label="Clear search">
+                                        <svg class="clear-icon" viewBox="0 0 24 24">
+                                            <path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke="currentColor" stroke-linecap="round"/>
+                                        </svg>
+                                    </button>
+
+                                </label>
+                            </div>
+
+                            <div class="tagsdiv">
+                                <div class="theTags selected">
+                                    <svg viewBox="0 -960 960 960">
+                                        <path d="M240-160q-33 0-56.5-23.5T160-240q0-33 23.5-56.5T240-320q33 0 56.5 23.5T320-240q0 33-23.5 56.5T240-160Zm240 0q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm240 0q-33 0-56.5-23.5T640-240q0-33 23.5-56.5T720-320q33 0 56.5 23.5T800-240q0 33-23.5 56.5T720-160ZM240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400ZM240-640q-33 0-56.5-23.5T160-720q0-33 23.5-56.5T240-800q33 0 56.5 23.5T320-720q0 33-23.5 56.5T240-640Zm240 0q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Zm240 0q-33 0-56.5-23.5T640-720q0-33 23.5-56.5T720-800q33 0 56.5 23.5T800-720q0 33-23.5 56.5T720-640Z"/>
+                                    </svg>
+                                    All
+                                </div>
+                                <div class="theTags">
+                                    <svg viewBox="0 -960 960 960">
+                                        <path d="M400-120q-66 0-113-47t-47-113q0-66 47-113t113-47q23 0 42.5 5.5T480-418v-422h240v160H560v400q0 66-47 113t-113 47Z"/>
+                                    </svg>
+                                    Songs
+                                </div>
+                                <div class="theTags">
+                                    <svg viewBox="0 -960 960 960">
+                                        <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h480q33 0 56.5 23.5T720-720v180l160-160v440L720-420v180q0 33-23.5 56.5T640-160H160Zm0-80h480v-480H160v480Zm0 0v-480 480Z"/>
+                                    </svg>
+                                    Videos
+                                </div>
+                                <div class="theTags">
+                                    <svg viewBox="0 -960 960 960">
+                                        <path d="M640-160q-50 0-85-35t-35-85q0-50 35-85t85-35q11 0 21 1.5t19 6.5v-288q0-17 11.5-28.5T720-720h120q17 0 28.5 11.5T880-680q0 17-11.5 28.5T840-640h-80v360q0 50-35 85t-85 35ZM160-320q-17 0-28.5-11.5T120-360q0-17 11.5-28.5T160-400h240q17 0 28.5 11.5T440-360q0 17-11.5 28.5T400-320H160Zm0-160q-17 0-28.5-11.5T120-520q0-17 11.5-28.5T160-560h400q17 0 28.5 11.5T600-520q0 17-11.5 28.5T560-480H160Zm0-160q-17 0-28.5-11.5T120-680q0-17 11.5-28.5T160-720h400q17 0 28.5 11.5T600-680q0 17-11.5 28.5T560-640H160Z"/>
+                                    </svg>
+                                    Playlists
+                                </div>
+                                <div class="theTags">
+                                    <svg viewBox="0 -960 960 960">
+                                        <path d="M480-300q75 0 127.5-52.5T660-480q0-75-52.5-127.5T480-660q-75 0-127.5 52.5T300-480q0 75 52.5 127.5T480-300Zm0-140q-17 0-28.5-11.5T440-480q0-17 11.5-28.5T480-520q17 0 28.5 11.5T520-480q0 17-11.5 28.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/>
+                                    </svg>
+                                    Albums
+                                </div>
+                                <div class="theTags">
+                                    <svg viewBox="0 -960 960 960">
+                                        <path d="M700-160q-42 0-71-29t-29-71q0-42 29-71t71-29q8 0 18 1.5t22 6.5v-168q0-17 11.5-28.5T780-560h60q17 0 28.5 11.5T880-520q0 17-11.5 28.5T840-480h-40v220q0 42-29 71t-71 29ZM440-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160q-17 0-28.5-11.5T120-200v-72q0-35 17.5-63t46.5-43q62-31 126-46.5T440-440q28 0 55.5 3t55.5 9q17 4 21.5 21t-9.5 31q-21 25-31.5 54.5T521-260q0 13 1.5 25.5T528-209q5 18-4.5 33.5T497-160H160Z"/>
+                                    </svg>
+                                    Artists
+                                </div>
+                                <div class="theTags">
+                                    <svg viewBox="0 -960 960 960">
+                                        <path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q17 0 28.5 11.5T520-840v291q18 11 29 28.5t11 40.5q0 33-23.5 56.5T480-400q-33 0-56.5-23.5T400-480q0-23 11-41t29-28v-86q-52 14-86 56.5T320-480q0 66 47 113t113 47q66 0 113-47t47-113q0-26-7.5-48T612-570q-10-14-9-31t12-28q12-12 28.5-12t26.5 14q23 31 36.5 68t13.5 79q0 100-70 170t-170 70q-100 0-170-70t-70-170q0-90 57-156.5T440-717v-81q-119 15-199.5 105T160-480q0 134 93 227t227 93q134 0 227-93t93-227q0-58-19-109.5T727-683q-11-13-11-30t12-29q12-12 28.5-11.5T784-740q45 53 70.5 119T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/>
+                                    </svg>
+                                    Genres
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="searchResults">
+                        
+                        
+
+                        
+
+                    </div>
+
+                </div>
+
+                <div id="songsContentDiv" class="middleContentItems">
+                    <!-- Songs -->
+
+                    <div id="songListTopSide">
+                        <div class="songListTopBar">
+                            
+                            <div><span id="songsTotalNumber">No Songs</span></div>
+                            
+                            <div style=" display: flex; gap: 5px; ">
+
+                                <div id="addSongsBtnSongList" class="songBtnsDiv">
+                                    <svg class="middleSvg" viewBox="0 -960 960 960">
+                                        <path d="M226.67-80q-27 0-46.84-19.83Q160-119.67 160-146.67v-666.66q0-27 19.83-46.84Q199.67-880 226.67-880h319.66q13.34 0 25.84 5.33 12.5 5.34 21.5 14.34l186.66 186.66q9 9 14.34 21.5 5.33 12.5 5.33 25.84v479.66q0 27-19.83 46.84Q760.33-80 733.33-80H226.67Zm314-576q0 14.33 9.5 23.83 9.5 9.5 23.83 9.5h159.33L540.67-813.33V-656ZM428-194.67q40 0 68-27.66Q524-250 524-290v-184.67h84q14.33 0 23.83-9.5 9.5-9.5 9.5-23.83 0-14.33-9.5-23.83-9.5-9.5-23.83-9.5h-90.67q-14.33 0-23.83 9.5-9.5 9.5-9.5 23.83v143q-11-8.67-25.5-13.17t-30.5-4.5q-38.67 0-65.33 27Q336-328.67 336-290q0 39.33 26.67 67.33 26.66 28 65.33 28Z"/>
+                                    </svg>
+                                    <div>Add Songs</div>
+                                </div>
+
+                                <div id="addAudioFoldersBtnSongList" class="songBtnsDiv">
+                                    <svg class="middleSvg audioColor" viewBox="0 -960 960 960">
+                                        <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h207q16 0 30.5 6t25.5 17l57 57h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Z"/>
+                                    </svg>
+                                    Audio Folders
+                                </div>
+                                
+                                <div id="playAllBtnSongList" class="songBtnsDiv">
+                                    <svg class="middleSvg" viewBox="0 -960 960 960">
+                                        <path d="M320-273v-414q0-17 12-28.5t28-11.5q5 0 10.5 1.5T381-721l326 207q9 6 13.5 15t4.5 19q0 10-4.5 19T707-446L381-239q-5 3-10.5 4.5T360-233q-16 0-28-11.5T320-273Z"/>
+                                    </svg>
+                                    <div>Play All</div>
+                                </div>
+
+                                <div id="shufflePlayBtnSongList" class="songBtnsDiv">
+                                    <svg class="middleSvg" viewBox="0 -960 960 960">
+                                        <path d="M604-160q-14.17 0-23.75-9.62-9.58-9.61-9.58-23.83 0-14.22 9.58-23.72 9.58-9.5 23.75-9.5h81.33L550.33-361q-10-10-9.83-23.5.17-13.5 10.17-23.5t23.83-10.33q13.83-.34 23.83 9.66l135 134.67v-81.33q0-14.17 9.62-23.75 9.62-9.59 23.83-9.59 14.22 0 23.72 9.59 9.5 9.58 9.5 23.75v162q0 14.16-9.58 23.75-9.59 9.58-23.75 9.58H604Zm-433.33-10.67Q161-180.33 161-194q0-13.67 9.67-23.33l516-516H604q-14.17 0-23.75-9.62t-9.58-23.83q0-14.22 9.58-23.72 9.58-9.5 23.75-9.5h162.67q14.16 0 23.75 9.58 9.58 9.59 9.58 23.75v162q0 14.17-9.62 23.75-9.61 9.59-23.83 9.59-14.22 0-23.72-9.59-9.5-9.58-9.5-23.75V-686l-516 516q-9.66 9.67-23.33 9.33-13.67-.33-23.33-10Zm-1-572.66Q160-753 160-767q0-14 9.67-23.67 9.66-9.66 23.23-9.66t23.43 9.66L409-598.33q9.67 9.66 10.17 23.23t-9.5 23.43Q400-542 386-542q-14 0-23.67-9.67L169.67-743.33Z"/>
+                                    </svg>
+                                    <div>Shuffle and Play</div>
+                                </div>
+
+                                <div style="position: relative; display: inline-block;">
+                                    <div id="sortBtnSongList" class="buttonStyle">Sort By ↕</div>
+                                    <div id="sortDropdownSongList" class="sortDropdown">
+                                        <div class="sortOption" data-sort="title_asc">A to Z</div>
+                                        <div class="sortOption" data-sort="title_desc">Z to A</div>
+                                        <div class="sortOption" data-sort="added_desc">Newest</div>
+                                        <div class="sortOption" data-sort="added_asc">Oldest</div>
+                                        <div class="sortOption" data-sort="plays_desc">Most listened</div>
+                                        <div class="sortOption" data-sort="plays_asc">Least listened</div>
+                                        <div class="sortOption" data-sort="artist_asc">Artist Name (A to Z)</div>
+                                        <div class="sortOption" data-sort="artist_desc">Artist Name (Z to A)</div>
+                                        <div class="sortOption" data-sort="albumName_asc">Album Name (A to Z)</div>
+                                        <div class="sortOption" data-sort="albumName_desc">Album Name (Z to A)</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div id="" class="songsHeader songsRow header">
+                            <div class="songArtCol"></div>
+                            <div class="songNameCol">Name</div>
+                            <div class="songArtistCol">Artist</div>
+                            <div class="songAlbumCol">Album</div>
+                            <div class="songYearCol">Year</div>
+                            <div class="songFavCol"></div>
+                            <div class="songDurationCol">Time</div>
+                        </div>
+                    </div>
+
+                    <div id="songsList"></div>
+
+                </div>
+
+                <div id="videosContentDiv" class="middleContentItems">
+                    <div class="videosTopBar">
+
+                        <span id="videosTotalNumber">No Videos</span>
+
+                        <div class="videoViewModeBtns">
+                            <button id="btnVideoListView" class="active">List</button>
+                            <button id="btnVideoGridView">Grid</button>
+                        </div>
+
+                        <div style="display: flex; gap: 5px;">
+                            <div id="addVideosBtnVideoList" class="foldersBtnsDiv">
+                                <svg class="middleSvg" viewBox="0 -960 960 960">
+                                    <path d="M226.67-80q-27 0-46.84-19.83Q160-119.67 160-146.67v-666.66q0-27 19.83-46.84Q199.67-880 226.67-880h319.66q13.34 0 25.84 5.33 12.5 5.34 21.5 14.34l186.66 186.66q9 9 14.34 21.5 5.33 12.5 5.33 25.84v479.66q0 27-19.83 46.84Q760.33-80 733.33-80H226.67Zm314-576q0 14.33 9.5 23.83 9.5 9.5 23.83 9.5h159.33L540.67-813.33V-656Zm-186 416h170q15 0 25.83-10.83 10.83-10.84 10.83-25.84v-50l55.67 31q8.67 5 16.5 0t7.83-14.66v-99.34q0-9.66-7.83-14.66t-16.5 0l-55.67 31v-50q0-15-10.83-25.84Q539.67-480 524.67-480h-170q-15 0-25.84 10.83Q318-458.33 318-443.33v166.66q0 15 10.83 25.84Q339.67-240 354.67-240Z"/>
+                                </svg>
+                                <div>Add Videos</div>
+                            </div>
+                            <div id="addVideoFoldersBtnVideoList" class="foldersBtnsDiv">
+                                <svg class="middleSvg videoColor" viewBox="0 -960 960 960">
+                                    <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h207q16 0 30.5 6t25.5 17l57 57h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Z"/>
+                                </svg>
+                                Video Folders
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div id="videosListContainer" class="videosListView"></div>
+                    
+                </div>
+
+                <div id="playlistsContentDiv" class="middleContentItems">
+                    <div class="playlistTopBar">
+                            
+                            <div><span id="playlistsTotalNumber">No Playlists</span></div>
+                            
+                            <div style=" display: flex; gap: 5px; ">
+
+                                <div id="addPlaylistBtn" class="songBtnsDiv">
+                                    <svg class="middleSvg" viewBox="0 -960 960 960">
+                                        <path d="M160-320q-17 0-28.5-11.5T120-360q0-17 11.5-28.5T160-400h200q17 0 28.5 11.5T400-360q0 17-11.5 28.5T360-320H160Zm0-160q-17 0-28.5-11.5T120-520q0-17 11.5-28.5T160-560h360q17 0 28.5 11.5T560-520q0 17-11.5 28.5T520-480H160Zm0-160q-17 0-28.5-11.5T120-680q0-17 11.5-28.5T160-720h360q17 0 28.5 11.5T560-680q0 17-11.5 28.5T520-640H160Zm520 480q-17 0-28.5-11.5T640-200v-120H520q-17 0-28.5-11.5T480-360q0-17 11.5-28.5T520-400h120v-120q0-17 11.5-28.5T680-560q17 0 28.5 11.5T720-520v120h120q17 0 28.5 11.5T880-360q0 17-11.5 28.5T840-320H720v120q0 17-11.5 28.5T680-160Z"/>
+                                    </svg>
+                                    <div>New Playlist</div>
+                                </div>
+
+                                <div id="importPlaylistBtn" class="songBtnsDiv">
+                                    <svg class="middleSvg" viewBox="0 -960 960 960">
+                                        <path d="M480-480Zm280 360H440q-17 0-28.5-11.5T400-160q0-17 11.5-28.5T440-200h320v-560H200v120q0 17-11.5 28.5T160-600q-17 0-28.5-11.5T120-640v-120q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120ZM120-80q-17 0-28.5-11.5T80-120q0-17 11.5-28.5T120-160h62q-48-23-77.5-68T75-330q0-79 55.5-134.5T265-520q17 0 28.5 11.5T305-480q0 17-11.5 28.5T265-440q-45 0-77.5 32T155-330q0 39 24 69t61 38v-57q0-17 11.5-28.5T280-320q17 0 28.5 11.5T320-280v160q0 17-11.5 28.5T280-80H120Zm320-200h80q17 0 28.5-11.5T560-320q0-17-11.5-28.5T520-360h-80q-17 0-28.5 11.5T400-320q0 17 11.5 28.5T440-280Zm0-160h200q17 0 28.5-11.5T680-480q0-17-11.5-28.5T640-520H440q-17 0-28.5 11.5T400-480q0 17 11.5 28.5T440-440ZM320-600h320q17 0 28.5-11.5T680-640q0-17-11.5-28.5T640-680H320q-17 0-28.5 11.5T280-640q0 17 11.5 28.5T320-600Z"/>
+                                    </svg>
+                                    Import Playlist
+                                </div>
+
+                                <div style="position: relative; display: inline-block;">
+                                    <div id="sortBtnPlaylists" class="buttonStyle">Sort By ↕</div>
+                                    <div id="sortDropdownPlaylists" class="sortDropdown">
+                                        <div class="sortOption" data-sort="title_asc">A to Z</div>
+                                        <div class="sortOption" data-sort="title_desc">Z to A</div>
+                                        <div class="sortOption" data-sort="added_desc">Newest</div>
+                                        <div class="sortOption" data-sort="added_asc">Oldest</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    <div id="playlistsContent" class="">
+                    </div>
+                </div>
+
+                <div id="foldersContentDiv" class="middleContentItems">
+                    <div id="foldersManager">
+                        <div class="songListTopBar">
+                            <div><span id="foldersTotalNumber">No Folders</span></div>
+
+                            <div style="display: flex; gap: 5px; align-items: center; justify-content: end;">
+                                <div id="btnAddFolder" class="foldersBtnsDiv">
+                                    <svg class="middleSvg mixedColor" viewBox="0 0 24 24" fill="none">
+                                        <path d="M9 13H15M12 10V16M12.0627 6.06274L11.9373 5.93726C11.5914 5.59135 11.4184 5.4184 11.2166 5.29472C11.0376 5.18506 10.8425 5.10425 10.6385 5.05526C10.4083 5 10.1637 5 9.67452 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V15.8C3 16.9201 3 17.4802 3.21799 17.908C3.40973 18.2843 3.71569 18.5903 4.09202 18.782C4.51984 19 5.07989 19 6.2 19H17.8C18.9201 19 19.4802 19 19.908 18.782C20.2843 18.5903 20.5903 18.2843 20.782 17.908C21 17.4802 21 16.9201 21 15.8V10.2C21 9.0799 21 8.51984 20.782 8.09202C20.5903 7.71569 20.2843 7.40973 19.908 7.21799C19.4802 7 18.9201 7 17.8 7H14.3255C13.8363 7 13.5917 7 13.3615 6.94474C13.1575 6.89575 12.9624 6.81494 12.7834 6.70528C12.5816 6.5816 12.4086 6.40865 12.0627 6.06274Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    Add Folders
+                                </div>
+                                <div id="addAudioFoldersBtnFolderList" class="foldersBtnsDiv">
+                                    <svg class="middleSvg audioColor" viewBox="0 -960 960 960">
+                                        <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h207q16 0 30.5 6t25.5 17l57 57h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Z"/>
+                                    </svg>
+                                    Audio Folders
+                                </div>
+                                <div id="addVideoFoldersBtnFolderList" class="foldersBtnsDiv">
+                                    <svg class="middleSvg videoColor" viewBox="0 -960 960 960">
+                                        <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h207q16 0 30.5 6t25.5 17l57 57h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Z"/>
+                                    </svg>
+                                    Video Folders
+                                </div>
+                                <div id="btnReload" class="foldersBtnsDiv">
+                                    <svg class="middleSvg" viewBox="0 -960 960 960">
+                                        <path d="M482-160q-134 0-228-93t-94-227v-7l-64 64-56-56 160-160 160 160-56 56-64-64v7q0 100 70.5 170T482-240q26 0 51-6t49-18l60 60q-38 22-78 33t-82 11Zm278-161L600-481l56-56 64 64v-7q0-100-70.5-170T478-720q-26 0-51 6t-49 18l-60-60q38-22 78-33t82-11q134 0 228 93t94 227v7l64-64 56 56-160 160Z"/>
+                                    </svg>
+                                    <!-- Rescan (fast) -->
+                                    Reload List
+                                </div>
+                                <div id="btnRescan" class="foldersBtnsDiv">
+                                    <svg class="middleSvg" viewBox="0 -960 960 960">
+                                        <path d="M400-320q100 0 170-70t70-170q0-100-70-170t-170-70q-100 0-170 70t-70 170q0 100 70 170t170 70Zm-40-120v-280h80v280h-80Zm-140 0v-200h80v200h-80Zm280 0v-160h80v160h-80ZM824-80 597-307q-41 32-91 49.5T400-240q-134 0-227-93T80-560q0-134 93-227t227-93q134 0 227 93t93 227q0 56-17.5 106T653-363l227 227-56 56Z"/>
+                                    </svg>
+                                    Rescan Folders
+                                </div>
+                            </div>
+                        </div>
+                        <div id="indexProgress" style="display:none; margin-top:8px;">
+                            <div id="indexText">Indexing…</div>
+                            <div style="width:100%; background:#333; height:8px; border-radius:4px;">
+                            <div id="indexBar" style="width:0%; height:100%; background:#4caf50;"></div>
+                            </div>
+                        </div>
+
+                        <ul id="foldersList"></ul>
+                        
+                    </div>
+                </div>
+
+                <div id="artistsContentDiv" class="middleContentItems">
+                    <div class="artistsTopBar">Artists</div>
+                    <div id="artistsContent"></div>
+                </div>
+
+                <div id="albumsContentDiv" class="middleContentItems">
+                    <div class="albumsTopBar">Albums</div>
+                    <div id="albumsContent"></div>
+                </div>
+
+                <div id="genresContentDiv" class="middleContentItems">
+                    <div class="genresTopBar">Genres</div>
+                    <div id="genresContent"></div>
+                </div>
+
+                <div id="categorySongsDiv" class="middleContentItems" style="display: none;">
+                    <div class="categorySongsTopBar">
+                        <button id="backToLibraryBtn">← Back</button>
+
+                        <div class="categorySongsHeader">
+                            <div id="categorySongsTitle"></div>
+                        </div>
+
+                        <div style=" display: flex; gap: 5px; ">
+
+                            <div id="playAllBtnCategory" class="songBtnsDiv">
+                                <svg class="middleSvg" viewBox="0 -960 960 960">
+                                    <path d="M320-273v-414q0-17 12-28.5t28-11.5q5 0 10.5 1.5T381-721l326 207q9 6 13.5 15t4.5 19q0 10-4.5 19T707-446L381-239q-5 3-10.5 4.5T360-233q-16 0-28-11.5T320-273Z"/>
+                                </svg>
+                                <div>Play All</div>
+                            </div>
+
+                            <div id="shuffleAndPlayBtnCategory" class="songBtnsDiv">
+                                <svg class="middleSvg" viewBox="0 -960 960 960">
+                                    <path d="M604-160q-14.17 0-23.75-9.62-9.58-9.61-9.58-23.83 0-14.22 9.58-23.72 9.58-9.5 23.75-9.5h81.33L550.33-361q-10-10-9.83-23.5.17-13.5 10.17-23.5t23.83-10.33q13.83-.34 23.83 9.66l135 134.67v-81.33q0-14.17 9.62-23.75 9.62-9.59 23.83-9.59 14.22 0 23.72 9.59 9.5 9.58 9.5 23.75v162q0 14.16-9.58 23.75-9.59 9.58-23.75 9.58H604Zm-433.33-10.67Q161-180.33 161-194q0-13.67 9.67-23.33l516-516H604q-14.17 0-23.75-9.62t-9.58-23.83q0-14.22 9.58-23.72 9.58-9.5 23.75-9.5h162.67q14.16 0 23.75 9.58 9.58 9.59 9.58 23.75v162q0 14.17-9.62 23.75-9.61 9.59-23.83 9.59-14.22 0-23.72-9.59-9.5-9.58-9.5-23.75V-686l-516 516q-9.66 9.67-23.33 9.33-13.67-.33-23.33-10Zm-1-572.66Q160-753 160-767q0-14 9.67-23.67 9.66-9.66 23.23-9.66t23.43 9.66L409-598.33q9.67 9.66 10.17 23.23t-9.5 23.43Q400-542 386-542q-14 0-23.67-9.67L169.67-743.33Z"/>
+                                </svg>
+                                <div>Shuffle and Play</div>
+                            </div>
+
+                            <div style="position: relative; display: inline-block;">
+                                <div id="sortBtnCategory" class="buttonStyle">Sort By ↕</div>
+                                <div id="sortDropdownCategory" class="sortDropdown">
+                                    <div class="sortOption" data-sort="title_asc">A to Z</div>
+                                    <div class="sortOption" data-sort="title_desc">Z to A</div>
+                                    <div class="sortOption" data-sort="added_desc">Newest</div>
+                                    <div class="sortOption" data-sort="added_asc">Oldest</div>
+                                    <div class="sortOption" data-sort="plays_desc">Most listened</div>
+                                    <div class="sortOption" data-sort="plays_asc">Least listened</div>
+                                    <div class="sortOption" data-sort="artist_asc">Artist Name (A to Z)</div>
+                                    <div class="sortOption" data-sort="artist_desc">Artist Name (Z to A)</div>
+                                    <div class="sortOption" data-sort="albumName_asc">Album Name (A to Z)</div>
+                                    <div class="sortOption" data-sort="albumName_desc">Album Name (Z to A)</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="categorySongsList">
+                        <div class="songsHeader songsRow header">
+                            <div class="songArtCol"></div>
+                            <div class="songNameCol">Name</div>
+                            <div class="songArtistCol">Artist</div>
+                            <div class="songAlbumCol">Album</div>
+                            <div class="songYearCol">Year</div>
+                            <div class="songFavCol"></div>
+                            <div class="songDurationCol">Time</div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div id="playlistSongsDiv" class="middleContentItems" style="display:none;">
+                    <div class="playlistSongsTopBar">
+
+                        <button id="backToPlaylistsBtn">← Back</button>
+
+                        <div class="playlistSongsHeader">
+                            <div id="playlistSongsTitle">Playlist Name</div>
+                        </div>
+
+                        <div style="display: flex; gap: 5px;">
+
+                            <div id="addToQueueBtn" class="songBtnsDiv">
+                                <svg class="middleSvg" viewBox="0 -960 960 960">
+                                    <path d="M640-160q-50 0-85-35t-35-85q0-50 35-85t85-35q11 0 21 1.5t19 6.5v-288q0-17 11.5-28.5T720-720h120q17 0 28.5 11.5T880-680q0 17-11.5 28.5T840-640h-80v360q0 50-35 85t-85 35ZM160-320q-17 0-28.5-11.5T120-360q0-17 11.5-28.5T160-400h240q17 0 28.5 11.5T440-360q0 17-11.5 28.5T400-320H160Zm0-160q-17 0-28.5-11.5T120-520q0-17 11.5-28.5T160-560h400q17 0 28.5 11.5T600-520q0 17-11.5 28.5T560-480H160Zm0-160q-17 0-28.5-11.5T120-680q0-17 11.5-28.5T160-720h400q17 0 28.5 11.5T600-680q0 17-11.5 28.5T560-640H160Z"/>
+                                </svg>
+                                <div>Add to Queue</div>
+                            </div>
+
+                            <div id="editPlaylistBtn" class="songBtnsDiv">
+                                <svg class="middleSvg" viewBox="0 -960 960 960">
+                                    <path d="M240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h287q16 0 30.5 6t25.5 17l194 194q11 11 17 25.5t6 30.5v63q0 11-6.5 19T777-513q-16 6-30.5 15.5T720-476L504-260q-11 11-17.5 25.5T480-204v84q0 17-11.5 28.5T440-80H240Zm320-40v-66q0-8 3-15.5t9-13.5l209-208q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q8 9 12.5 20t4.5 22q0 11-4 22.5T903-300L695-92q-6 6-13.5 9T666-80h-66q-17 0-28.5-11.5T560-120Zm263-184 37-39-37-37-38 38 38 38ZM560-600h160L520-800l200 200-200-200v160q0 17 11.5 28.5T560-600Z"/>
+                                </svg>
+                                <div>Edit Playlist</div>
+                            </div>
+                            <div id="deletePlaylistBtn" class="songBtnsDiv">
+                                <svg class="middleSvg" viewBox="0 -960 960 960">
+                                    <path d="M280-120q-33 0-56.5-23.5T200-200v-520q-17 0-28.5-11.5T160-760q0-17 11.5-28.5T200-800h160q0-17 11.5-28.5T400-840h160q17 0 28.5 11.5T600-800h160q17 0 28.5 11.5T800-760q0 17-11.5 28.5T760-720v520q0 33-23.5 56.5T680-120H280Zm120-160q17 0 28.5-11.5T440-320v-280q0-17-11.5-28.5T400-640q-17 0-28.5 11.5T360-600v280q0 17 11.5 28.5T400-280Zm160 0q17 0 28.5-11.5T600-320v-280q0-17-11.5-28.5T560-640q-17 0-28.5 11.5T520-600v280q0 17 11.5 28.5T560-280Z"/>
+                                </svg>
+                                <div>Delete Playlist</div>
+                            </div>
+                            <div id="playAllBtnPlaylist" class="songBtnsDiv">
+                                <svg class="middleSvg" viewBox="0 -960 960 960">
+                                    <path d="M320-273v-414q0-17 12-28.5t28-11.5q5 0 10.5 1.5T381-721l326 207q9 6 13.5 15t4.5 19q0 10-4.5 19T707-446L381-239q-5 3-10.5 4.5T360-233q-16 0-28-11.5T320-273Z"/>
+                                </svg>
+                                <div>Play All</div>
+                            </div>
+
+                            <div id="shuffleAndPlayBtnPlaylist" class="songBtnsDiv">
+                                <svg class="middleSvg" viewBox="0 -960 960 960">
+                                    <path d="M604-160q-14.17 0-23.75-9.62-9.58-9.61-9.58-23.83 0-14.22 9.58-23.72 9.58-9.5 23.75-9.5h81.33L550.33-361q-10-10-9.83-23.5.17-13.5 10.17-23.5t23.83-10.33q13.83-.34 23.83 9.66l135 134.67v-81.33q0-14.17 9.62-23.75 9.62-9.59 23.83-9.59 14.22 0 23.72 9.59 9.5 9.58 9.5 23.75v162q0 14.16-9.58 23.75-9.59 9.58-23.75 9.58H604Zm-433.33-10.67Q161-180.33 161-194q0-13.67 9.67-23.33l516-516H604q-14.17 0-23.75-9.62t-9.58-23.83q0-14.22 9.58-23.72 9.58-9.5 23.75-9.5h162.67q14.16 0 23.75 9.58 9.58 9.59 9.58 23.75v162q0 14.17-9.62 23.75-9.61 9.59-23.83 9.59-14.22 0-23.72-9.59-9.5-9.58-9.5-23.75V-686l-516 516q-9.66 9.67-23.33 9.33-13.67-.33-23.33-10Zm-1-572.66Q160-753 160-767q0-14 9.67-23.67 9.66-9.66 23.23-9.66t23.43 9.66L409-598.33q9.67 9.66 10.17 23.23t-9.5 23.43Q400-542 386-542q-14 0-23.67-9.67L169.67-743.33Z"/>
+                                </svg>
+                                <div>Shuffle and Play</div>
+                            </div>
+
+                            <div style="position: relative; display: inline-block;">
+                                <div id="sortBtnPlaylistSongs" class="buttonStyle">Sort By ↕</div>
+                                <div id="sortDropdownPlaylistSongs" class="sortDropdown">
+                                    <div class="sortOption" data-sort="title_asc">A to Z</div>
+                                    <div class="sortOption" data-sort="title_desc">Z to A</div>
+                                    <div class="sortOption" data-sort="added_desc">Newest</div>
+                                    <div class="sortOption" data-sort="added_asc">Oldest</div>
+                                    <div class="sortOption" data-sort="plays_desc">Most listened</div>
+                                    <div class="sortOption" data-sort="plays_asc">Least listened</div>
+                                    <div class="sortOption" data-sort="artist_asc">Artist Name (A to Z)</div>
+                                    <div class="sortOption" data-sort="artist_desc">Artist Name (Z to A)</div>
+                                    <div class="sortOption" data-sort="albumName_asc">Album Name (A to Z)</div>
+                                    <div class="sortOption" data-sort="albumName_desc">Album Name (Z to A)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="playlistSongsList"></div>
+                </div>
+
+                <div id="folderSongsDiv" class="middleContentItems" style="display:none;">
+                    <div class="playlistSongsTopBar">
+
+                        <button id="backToFolderBtn">← Back</button>
+
+                        <div class="playlistSongsHeader">
+                            <div id="folderSongsTitle">Folder Name</div>
+                        </div>
+
+                        <div style="display: flex; gap: 5px;">
+
+                            <div id="openFolderBtn" class="songBtnsDiv">
+                                <svg class="middleSvg" viewBox="0 -960 960 960">
+                                    <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h207q16 0 30.5 6t25.5 17l57 57h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Z"/>
+                                </svg>
+                                <div>Open Folder</div>
+                            </div>
+
+                            <div id="playAllBtnFolder" class="songBtnsDiv">
+                                <svg class="middleSvg" viewBox="0 -960 960 960">
+                                    <path d="M320-273v-414q0-17 12-28.5t28-11.5q5 0 10.5 1.5T381-721l326 207q9 6 13.5 15t4.5 19q0 10-4.5 19T707-446L381-239q-5 3-10.5 4.5T360-233q-16 0-28-11.5T320-273Z"/>
+                                </svg>
+                                <div>Play All</div>
+                            </div>
+
+                            <div id="shuffleAndPlayBtnFolder" class="songBtnsDiv">
+                                <svg class="middleSvg" viewBox="0 -960 960 960">
+                                    <path d="M604-160q-14.17 0-23.75-9.62-9.58-9.61-9.58-23.83 0-14.22 9.58-23.72 9.58-9.5 23.75-9.5h81.33L550.33-361q-10-10-9.83-23.5.17-13.5 10.17-23.5t23.83-10.33q13.83-.34 23.83 9.66l135 134.67v-81.33q0-14.17 9.62-23.75 9.62-9.59 23.83-9.59 14.22 0 23.72 9.59 9.5 9.58 9.5 23.75v162q0 14.16-9.58 23.75-9.59 9.58-23.75 9.58H604Zm-433.33-10.67Q161-180.33 161-194q0-13.67 9.67-23.33l516-516H604q-14.17 0-23.75-9.62t-9.58-23.83q0-14.22 9.58-23.72 9.58-9.5 23.75-9.5h162.67q14.16 0 23.75 9.58 9.58 9.59 9.58 23.75v162q0 14.17-9.62 23.75-9.61 9.59-23.83 9.59-14.22 0-23.72-9.59-9.5-9.58-9.5-23.75V-686l-516 516q-9.66 9.67-23.33 9.33-13.67-.33-23.33-10Zm-1-572.66Q160-753 160-767q0-14 9.67-23.67 9.66-9.66 23.23-9.66t23.43 9.66L409-598.33q9.67 9.66 10.17 23.23t-9.5 23.43Q400-542 386-542q-14 0-23.67-9.67L169.67-743.33Z"/>
+                                </svg>
+                                <div>Shuffle and Play</div>
+                            </div>
+
+                            <div style="position: relative; display: inline-block;">
+                                <div id="sortBtnFolderSongs" class="buttonStyle">Sort By ↕</div>
+                                <div id="sortDropdownFolderSongs" class="sortDropdown">
+                                    <div class="sortOption" data-sort="title_asc">A to Z</div>
+                                    <div class="sortOption" data-sort="title_desc">Z to A</div>
+                                    <div class="sortOption" data-sort="added_desc">Newest</div>
+                                    <div class="sortOption" data-sort="added_asc">Oldest</div>
+                                    <div class="sortOption" data-sort="plays_desc">Most listened</div>
+                                    <div class="sortOption" data-sort="plays_asc">Least listened</div>
+                                    <div class="sortOption" data-sort="artist_asc">Artist Name (A to Z)</div>
+                                    <div class="sortOption" data-sort="artist_desc">Artist Name (Z to A)</div>
+                                    <div class="sortOption" data-sort="albumName_asc">Album Name (A to Z)</div>
+                                    <div class="sortOption" data-sort="albumName_desc">Album Name (Z to A)</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="folderSongsList"></div>
+                </div>
+
+
+                <div id="settingsContentDiv" class="middleContentItems">
+                    <div class="settMainDiv">
+         
+                        <div class="settTitleMain">
+                            Settings
+                        </div>
+
+                            
+                        <div id="infoBtn" class="settingsAboutBtn">
+                            <div id="settAboutBtn" class="buttonStyle inputBtns" type="">
+                                <svg class="mediaSvg settMediaSvg" viewBox="0 -960 960 960">
+                                    <path d="M440-280h80v-240h-80v240Zm40-320q17 0 28.5-11.5T520-640q0-17-11.5-28.5T480-680q-17 0-28.5 11.5T440-640q0 17 11.5 28.5T480-600Zm0 520q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/>
+                                </svg>
+                                <span>About</span>
+                            </div>
+                        </div>
+
+                        <div class="">
+
+                            <div class="settTitle">
+                                <div class="settSvgDiv">
+                                    <svg class="mediaSvg settMediaSvg" viewBox="0 -960 960 960">
+                                        <path d="m424-312 282-282-56-56-226 226-114-114-56 56 170 170ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"/>
+                                    </svg>
+                                </div>
+                                <div>Options</div>
+                            </div>
+                            <div class="settContentColumn">
+                                <label><input type="checkbox" id="syncFolders"> Watch and Sync changes on Added Folders items</label>
+                                <label><input type="checkbox" id="hideBarsVideo"> Hide Bars when start playing a Video</label>
+                            </div>
+
+                        </div>
+
+                        <div class="">
+
+                            <div class="settTitle">
+                                <div class="settSvgDiv">
+                                    <svg class="mediaSvg settMediaSvg" viewBox="0 -960 960 960">
+                                        <path d="M773.33-481q0-90.33-49.66-163.17Q674-717 592.67-751q-13-5.67-18.67-17.83-5.67-12.17-.67-24.5 5.34-13.34 18.84-18.67 13.5-5.33 27.5.33 99.66 41.67 160 131.17Q840-591 840-481t-60.33 199.5q-60.34 89.5-160 131.17-14 5.66-27.5.33t-18.84-18.67q-5-12.33.67-24.5 5.67-12.16 18.67-17.83 81.33-34 131-106.83 49.66-72.84 49.66-163.17ZM280-360H153.33q-14.33 0-23.83-9.5-9.5-9.5-9.5-23.83v-173.34q0-14.33 9.5-23.83 9.5-9.5 23.83-9.5H280l143.33-143.33Q439-759 459.5-750.5t20.5 30.83v479.34q0 22.33-20.5 30.83t-36.17-7.17L280-360Zm380-120q0 48.67-23.67 89.17-23.66 40.5-65.33 63.16-8.67 4.67-16.5-.5-7.83-5.16-7.83-14.5v-276q0-9.33 7.83-14.5 7.83-5.16 16.5-.5 41.67 23 65.33 64.34Q660-528 660-480Z"/>
+                                    </svg>
+                                </div>
+                                <div>Volume</div>
+                            </div>
+                            <div class="settContent" id="maxVolumeSelector">
+
+                                <div class="col">
+                                    <label><input type="radio" name="maxVolume" value="1"> 100% (Normal)</label>
+                                    <label><input type="radio" name="maxVolume" value="2"> 200% (Loud)</label>
+                                    <label><input type="radio" name="maxVolume" value="3"> 300% (Very Loud)</label>
+                                </div>
+
+                                <div class="col">
+                                    <label><input type="radio" name="maxVolume" value="4"> 400% (Dangerous)</label>
+                                    <label><input type="radio" name="maxVolume" value="5"> 500% (Extremely Dangerous)</label>
+                                    <label><input type="radio" name="maxVolume" value="6"> 600% (Hearing Damage Risk)</label>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="">
+                            <div class="settTitle">
+                                <div class="settSvgDiv">
+                                    <svg class="mediaSvg settMediaSvg" viewBox="0 -960 960 960">
+                                        <path d="M120-160q-33 0-56.5-23.5T40-240v-480q0-33 23.5-56.5T120-800h720q33 0 56.5 23.5T920-720v480q0 33-23.5 56.5T840-160H120Zm0-80h720v-480H120v480Zm200-40h320v-80H320v80ZM200-420h80v-80h-80v80Zm160 0h80v-80h-80v80Zm160 0h80v-80h-80v80Zm160 0h80v-80h-80v80ZM200-560h80v-80h-80v80Zm160 0h80v-80h-80v80Zm160 0h80v-80h-80v80Zm160 0h80v-80h-80v80ZM120-240v-480 480Z"/>
+                                    </svg>
+                                </div>
+                                <div>Keybind List</div>
+                            </div>
+
+                            <div class="keybindGrid">
+
+                                <!-- LEFT COLUMN -->
+                                <div class="settContentColumn">
+
+                                    <div class="keyBindRow">
+                                        <div class="keyBtn">Space</div>
+                                        <div class="keyCmd">Play/Pause</div>
+                                    </div>
+
+                                    <div class="keyBindRow">
+                                        <div class="keyBtn">N</div>
+                                        <div class="keyCmd">Next Track</div>
+                                    </div>
+
+                                    <div class="keyBindRow">
+                                        <div class="keyBtn">P</div>
+                                        <div class="keyCmd">Previous Track</div>
+                                    </div>
+
+                                    <div class="keyBindRow">
+                                        <div class="keyBtn">→</div>
+                                        <div class="keyCmd">10 sec Foward</div>
+                                    </div>
+
+                                    <div class="keyBindRow">
+                                        <div class="keyBtn">←</div>
+                                        <div class="keyCmd">10 sec Back</div>
+                                    </div>
+                                </div>
+
+                                <!-- RIGHT COLUMN -->
+                                <div class="settContentColumn">
+                                    <div class="keyBindRow">
+                                        <div class="keyBtn">F</div>
+                                        <div class="keyCmd">Full Screen</div>
+                                    </div>
+                                    <div class="keyBindRow">
+                                        <div class="keyBtn">M</div>
+                                        <div class="keyCmd">Mute</div>
+                                    </div>
+
+                                    <div class="keyBindRow">
+                                        <div class="keyBtn">↑</div>
+                                        <div class="keyCmd">Volume Up</div>
+                                    </div>
+
+                                    <div class="keyBindRow">
+                                        <div class="keyBtn">↓</div>
+                                        <div class="keyCmd">Volume Down</div>
+                                    </div>
+
+                                    <div class="keyBindRow">
+                                        <div class="keyBtn">F5</div>
+                                        <div class="keyCmd">Reload App</div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="">
+                            
+                            <div class="settTitle">
+                                <div class="settSvgDiv">
+                                    <svg class="mediaSvg settMediaSvg" viewBox="0 -960 960 960">
+                                        <path d="M160-280h640v-240H160v240Zm520-60q25 0 42.5-17.5T740-400q0-25-17.5-42.5T680-460q-25 0-42.5 17.5T620-400q0 25 17.5 42.5T680-340Zm200-260H767l-80-80H273l-80 80H80l137-137q11-11 25.5-17t30.5-6h414q16 0 30.5 6t25.5 17l137 137ZM160-200q-33 0-56.5-23.5T80-280v-320h800v320q0 33-23.5 56.5T800-200H160Z"/>
+                                    </svg>
+                                </div>
+                                <div>Data</div>
+                            </div>
+
+                            <div class="settContent">
+                                <div class="settDelDataDiv">
+                                    <div id="openDataFolder" class="buttonStyle delDataBtn">
+                                        <svg class="mediaSvg settMediaSvg" viewBox="0 -960 960 960">
+                                            <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h207q16 0 30.5 6t25.5 17l57 57h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Z"/>
+                                        </svg>
+                                        <span>Open Data Folder</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div id="videoPlayerDiv">
+                    <video id="videoControl" preload="auto" playsinline controls></video>
+                </div>
+                
+            </div>
+            
+            
+
+             <!-- Playlist Panel -->
+            <div id="playlistPanel" class="retracted">
+                
+                <div id="dragBarQueue" class="hidden"></div>
+
+                <!-- <button id="togglePlaylistBtn">⮞</button> -->
+                <div id="playlistHeader">
+                    <div id="togglePlaylistBtn" tabindex="-1">
+                        <div id="arrowIcon">⮞</div> 
+                    </div>
+                    <div id="playlistTitleDiv">
+                        <span id="playlistTitle">Playing Queue</span>
+                    </div>
+                    <div id="playListMenu" tabindex="-1">
+                        <svg class="dotSVG" width="12px" height="12px" viewBox="0 0 16 16">
+                            <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                        </svg>
+                        <div id="playingQueueContextMenu" class="playlistMenu">
+                            <div class="playlistMenuItem" data-action="clear">Clear Queue</div>
+                            <div class="playlistMenuItem" data-action="save">Save as Playlist</div>
+                            <div class="playlistMenuItem" data-action="add-to">Add to a Playlist</div>
+                            <div class="playlistMenuItem" data-action="export">Export to m3u8 File</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="playlist">
+
+                </div>
+            </div>
+            
+            <div id="playlistHotZone"></div>
+        </div><!----------------------------/MIDDLE CONTENT DIV------------------------------>
+    </div>
+
+    <!----------------------------PLAY BAR------------------------------>
+    <div id="dragBar" class="hidden"></div>
+    <div id="fakeBar" class="hidden"></div>
+    <div id="playBarDiv" class="">
+
+        <div id="timeLineDiv" class="">
+            <div id="mediaCurrentTime"></div>
+            <div id="waveformTimeTooltip"></div>
+            <div id="waveFormDiv">
+                <canvas id="waveformCanvas"></canvas>
+            </div>
+            <div id="mediaTotalTime"></div>
+        </div>
+        
+        <div id="mediaButtonsDiv" class="">
+
+            <!-- LEFT -->
+            <div id="media_leftBtns">
+                <div id="playBarSongInfoDiv">
+                    <div>
+                        <img class="hidden" id="playBarAlbumCover" src="images/albumph.png" alt="">
+                    </div>
+                    <div id="fileDataDiv">
+                        <div id="songNameDiv"></div>
+                        <div id="artistNameDiv"></div>
+                        <div id="albumNameDiv"></div>
+                    </div>
+                </div>
+            </div><!-- LEFT -->
+
+            <!-- MIDDLE -->
+            <div id="media_middleBtns">
+                <div id="addFavBtnDiv" title="Add to Favorites">
+                    <div class="mediaControlsTiny">
+                        <svg class="mediaSvg" viewBox="0 -960 960 960">
+                            <path d="M480-142.33q-11.8 0-24.02-4.25-12.22-4.25-21.49-13.59l-58.16-53.5q-118-109-207.16-210.5Q80-525.67 80-640q0-91.44 61.33-152.72 61.34-61.28 152-61.28Q345-854 394-830.17q49 23.84 86 74.17 40.33-50.33 87.33-74.17 47-23.83 99.34-23.83 90.66 0 152 61.28Q880-731.44 880-640q0 114.33-89 216T583.33-213.33l-58 53.33q-9.16 9.25-21.25 13.46-12.08 4.21-24.08 4.21Zm-30-543q-27.67-46.34-68-74.17t-88.67-27.83q-64 0-105.33 41.66-41.33 41.67-41.33 105.96 0 55.71 38.25 117.65 38.25 61.93 91.5 120.16T386.5-293.33q56.83 50.33 93.5 84 36.67-33 93.5-83.67t110-109.33Q736.67-461 775-522.96q38.33-61.96 38.33-117.04 0-64-41.66-105.67-41.67-41.66-105-41.66-49 0-89 27.5t-69 74.5q-5.67 8.66-13 12.66-7.34 4-16.34 4t-16.66-4q-7.67-4-12.67-12.66Zm30 187Z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div id="shuffleBtnDiv" title="Shuffle List">
+                    <div class="mediaControlsTiny">
+                        <svg class="mediaSvg" viewBox="0 -960 960 960">
+                            <path d="M753-612H153.33q-14.33 0-23.83-9.5-9.5-9.5-9.5-23.83 0-14.34 9.5-23.84t23.83-9.5H753L661.67-770q-10-10-9.84-23.33.17-13.34 10.17-23.34 10-9.66 23.33-9.83 13.34-.17 23.34 9.83l148 148q5.33 5.34 7.5 11 2.16 5.67 2.16 12.34 0 6.66-2.16 12.33-2.17 5.67-7.5 11L709.33-474.67q-9.66 9.67-23.16 9.67t-23.5-9.67q-10-10-10-23.5t10-23.5L753-612Z"/>
+                            <g transform="scale(-1,1) translate(-960,100)">
+                                <path d="M207-280.67 297.67-190q10 10 9.83 23.33-.17 13.34-10.17 23.34-10 9.66-23.33 9.83-13.33.17-23.33-9.83L103.33-290.67q-5.33-5.33-7.5-11-2.16-5.66-2.16-12.33t2.16-12.33q2.17-5.67 7.5-11l148-148Q261-495 274.5-495q13.5 0 23.5 9.67 10 10 10 23.5t-10 23.5l-91 91h599.67q14.33 0 23.83 9.5 9.5 9.5 9.5 23.83 0 14.33-9.5 23.83-9.5 9.5-23.83 9.5H207Z"/>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+
+                <div id="prevBtnDiv" title="Previous Song">
+                    <div class="mediaControlsSmaller">
+                        <svg class="mediaSvg" viewBox="0 -960 960 960">
+                            <path d="M220-273.33v-413.34q0-14.16 9.62-23.75 9.61-9.58 23.83-9.58 14.22 0 23.72 9.58 9.5 9.59 9.5 23.75v413.34q0 14.16-9.62 23.75-9.62 9.58-23.83 9.58-14.22 0-23.72-9.58-9.5-9.59-9.5-23.75Zm468-2.34L430-452.33q-7.67-5.34-11.17-12.37-3.5-7.03-3.5-15.3t3.5-15.3q3.5-7.03 11.17-12.37l258-176.66q4.33-3.34 9-4.67t9.67-1.33q13.33 0 23.33 9.16Q740-672 740-657v354q0 15-10 24.17-10 9.16-23.33 9.16-5 0-9.67-1.33t-9-4.67Z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div id="playPauseBtn" title="Play">
+                    <div id="" class="mediaControls">
+                        <svg id="playIcon" viewBox="0 -960 960 960" class="icon active">
+                            <path d="M320-263v-438q0-15 10-24.17 10-9.16 23.33-9.16
+                            4.34 0 8.84 1.16 4.5 1.17 8.83 3.5L715.67-510q7.66 5.33
+                            11.5 12.33 3.83 7 3.83 15.67t-3.83 15.67q-3.84 7-11.5
+                            12.33L371-234.33q-4.33 2.33-8.83 3.5-4.5 1.16-8.84
+                            1.16-13.33 0-23.33-9.16Q320-248 320-263Z"/>
+                        </svg>
+                        <svg id="pauseIcon" viewBox="0 -960 960 960" class="icon">
+                            <path d="M623.33-200q-27.5 0-47.08-19.58-19.58-19.59-19.58-47.09v-426.66q0-27.5 19.58-47.09Q595.83-760 623.33-760H660q27.5 0 47.08 19.58 19.59 19.59 19.59 47.09v426.66q0 27.5-19.59 47.09Q687.5-200 660-200h-36.67ZM300-200q-27.5 0-47.08-19.58-19.59-19.59-19.59-47.09v-426.66q0-27.5 19.59-47.09Q272.5-760 300-760h36.67q27.5 0 47.08 19.58 19.58 19.59 19.58 47.09v426.66q0 27.5-19.58 47.09Q364.17-200 336.67-200H300Z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div id="nextBtnDiv" title="Next Song">
+                    <div class="mediaControlsSmaller">
+                        <svg class="mediaSvg" viewBox="0 -960 960 960">
+                            <path d="M673.33-273.33v-413.34q0-14.16 9.62-23.75 9.62-9.58 23.83-9.58 14.22 0 23.72 9.58 9.5 9.59 9.5 23.75v413.34q0 14.16-9.62 23.75-9.61 9.58-23.83 9.58-14.22 0-23.72-9.58-9.5-9.59-9.5-23.75ZM220-303v-354q0-15 10-24.17 10-9.16 23.33-9.16 5 0 9.67 1.33t9 4.67l258 176.66q7.67 5.34 11.17 12.37 3.5 7.03 3.5 15.3t-3.5 15.3q-3.5 7.03-11.17 12.37L272-275.67q-4.33 3.34-9 4.67t-9.67 1.33q-13.33 0-23.33-9.16Q220-288 220-303Z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div id="repeatBtnDiv" class="repeatContainer" title="Repeat Playing Queue">
+                    <div class="mediaControlsSmaller1 repeatIcon">
+                        <svg class="mediaSvg" viewBox="0 0 30 30">
+                            <g transform="translate(0,-289.0625)">
+                                <path
+                                d="M 15 3 L 15 6 C 10.041282 6 6 10.04128 6 15 C 6 19.95872 10.041282 24 15 24 C 19.958718 24 24 19.95872 24 15 C 24 13.029943 23.355254 11.209156 22.275391 9.7246094 L 20.849609 11.150391 C 21.575382 12.253869 22 13.575008 22 15 C 22 18.87784 18.877838 22 15 22 C 11.122162 22 8 18.87784 8 15 C 8 11.12216 11.122162 8 15 8 L 15 11 L 20 7 L 15 3 z "
+                                transform="translate(0,289.0625)"
+                                id="path852" />
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+
+                <div id="addToPlaylistBtnDiv" title="Add to Playlist">
+                    <div class="mediaControlsTiny">
+                        <svg class="mediaSvg" viewBox="0 -960 960 960">
+                            <path d="M448.67-444v130.67q0 14.16 9.61 23.75 9.62 9.58 23.84 9.58 14.21 0 23.71-9.58 9.5-9.59 9.5-23.75V-444h131.34q14.16 0 23.75-9.62 9.58-9.61 9.58-23.83 0-14.22-9.58-23.72-9.59-9.5-23.75-9.5H515.33v-136q0-14.16-9.61-23.75-9.62-9.58-23.84-9.58-14.21 0-23.71 9.58-9.5 9.59-9.5 23.75v136H313.33q-14.16 0-23.75 9.62-9.58 9.62-9.58 23.83 0 14.22 9.58 23.72 9.59 9.5 23.75 9.5h135.34Zm31.51 364q-82.83 0-155.67-31.5-72.84-31.5-127.18-85.83Q143-251.67 111.5-324.56T80-480.33q0-82.88 31.5-155.78Q143-709 197.33-763q54.34-54 127.23-85.5T480.33-880q82.88 0 155.78 31.5Q709-817 763-763t85.5 127Q880-563 880-480.18q0 82.83-31.5 155.67Q817-251.67 763-197.46q-54 54.21-127 85.84Q563-80 480.18-80Zm.15-66.67q139 0 236-97.33t97-236.33q0-139-96.87-236-96.88-97-236.46-97-138.67 0-236 96.87-97.33 96.88-97.33 236.46 0 138.67 97.33 236 97.33 97.33 236.33 97.33ZM480-480Z"/>
+                        </svg>
+                    </div>
+                </div>
+
+            </div><!-- MIDDLE -->
+
+            <!-- RIGHT -->
+            <div id="media_rightBtns" class="">
+                <div id="rightBtns_left" class="">
+                    <div id="infoBtnDiv" title="Song Info">
+                        <div class="mediaControlsTiny">        
+                            <svg class="mediaSvg" viewBox="0 -960 960 960">
+                                <path d="M482.12-280q14.21 0 23.71-9.58 9.5-9.59 9.5-23.75v-173.34q0-14.16-9.61-23.75-9.62-9.58-23.84-9.58-14.21 0-23.71 9.58-9.5 9.59-9.5 23.75v173.34q0 14.16 9.61 23.75 9.62 9.58 23.84 9.58Zm-2.13-316q15.01 0 25.18-9.97 10.16-9.96 10.16-24.7 0-15.3-10.15-25.65-10.16-10.35-25.17-10.35-15.01 0-25.18 10.35-10.16 10.35-10.16 25.65 0 14.74 10.15 24.7 10.16 9.97 25.17 9.97Zm.19 516q-82.83 0-155.67-31.5-72.84-31.5-127.18-85.83Q143-251.67 111.5-324.56T80-480.33q0-82.88 31.5-155.78Q143-709 197.33-763q54.34-54 127.23-85.5T480.33-880q82.88 0 155.78 31.5Q709-817 763-763t85.5 127Q880-563 880-480.18q0 82.83-31.5 155.67Q817-251.67 763-197.46q-54 54.21-127 85.84Q563-80 480.18-80Zm.15-66.67q139 0 236-97.33t97-236.33q0-139-96.87-236-96.88-97-236.46-97-138.67 0-236 96.87-97.33 96.88-97.33 236.46 0 138.67 97.33 236 97.33 97.33 236.33 97.33ZM480-480Z"/>
+                            </svg>
+                        </div>  
+                    </div>
+                    <div id="equaBtnDiv" title="Equalizer">
+                        <div class="mediaControlsTiny">        
+                            <svg class="mediaSvg" viewBox="0 -960 960 960">
+                                <path d="M234.55-160q-14.22 0-23.72-9.58-9.5-9.59-9.5-23.75v-256h-48q-14.16 0-23.75-9.62-9.58-9.62-9.58-23.83 0-14.22 9.58-23.72 9.59-9.5 23.75-9.5H316q14.17 0 23.75 9.62 9.58 9.61 9.58 23.83 0 14.22-9.58 23.72-9.58 9.5-23.75 9.5h-48v256q0 14.16-9.62 23.75-9.61 9.58-23.83 9.58Zm0-422.67q-14.22 0-23.72-9.58-9.5-9.58-9.5-23.75v-150.67q0-14.16 9.62-23.75 9.62-9.58 23.83-9.58 14.22 0 23.72 9.58 9.5 9.59 9.5 23.75V-616q0 14.17-9.62 23.75-9.61 9.58-23.83 9.58ZM398.67-610q-14.17 0-23.75-9.62-9.59-9.61-9.59-23.83 0-14.22 9.59-23.72 9.58-9.5 23.75-9.5h48v-90q0-14.16 9.61-23.75 9.62-9.58 23.84-9.58 14.21 0 23.71 9.58 9.5 9.59 9.5 23.75v90h48q14.17 0 23.75 9.62 9.59 9.62 9.59 23.83 0 14.22-9.59 23.72-9.58 9.5-23.75 9.5H398.67Zm81.21 450q-14.21 0-23.71-9.58-9.5-9.59-9.5-23.75V-510q0-14.17 9.61-23.75 9.62-9.58 23.84-9.58 14.21 0 23.71 9.58t9.5 23.75v316.67q0 14.16-9.61 23.75-9.62 9.58-23.84 9.58Zm245.34 0q-14.22 0-23.72-9.58-9.5-9.59-9.5-23.75v-91.34h-48q-14.17 0-23.75-9.61-9.58-9.62-9.58-23.84 0-14.21 9.58-23.71t23.75-9.5h162.67q14.16 0 23.75 9.61 9.58 9.62 9.58 23.84 0 14.21-9.58 23.71-9.59 9.5-23.75 9.5h-48v91.34q0 14.16-9.62 23.75-9.62 9.58-23.83 9.58Zm0-258q-14.22 0-23.72-9.58-9.5-9.59-9.5-23.75v-315.34q0-14.16 9.62-23.75 9.61-9.58 23.83-9.58 14.22 0 23.72 9.58 9.5 9.59 9.5 23.75v315.34q0 14.16-9.62 23.75-9.62 9.58-23.83 9.58Z"/>
+                            </svg>
+                        </div>  
+                    </div>
+                </div>
+                <div id="rightBtns_right" class="">
+                    <div id="volumeBtnDiv" class="">
+                        <div class="mediaControlsTiny">
+                            <svg class="mediaSvg" viewBox="0 -960 960 960">
+                                <path d="M773.33-481q0-90.33-49.66-163.17Q674-717 592.67-751q-13-5.67-18.67-17.83-5.67-12.17-.67-24.5 5.34-13.34 18.84-18.67 13.5-5.33 27.5.33 99.66 41.67 160 131.17Q840-591 840-481t-60.33 199.5q-60.34 89.5-160 131.17-14 5.66-27.5.33t-18.84-18.67q-5-12.33.67-24.5 5.67-12.16 18.67-17.83 81.33-34 131-106.83 49.66-72.84 49.66-163.17ZM280-360H153.33q-14.33 0-23.83-9.5-9.5-9.5-9.5-23.83v-173.34q0-14.33 9.5-23.83 9.5-9.5 23.83-9.5H280l143.33-143.33Q439-759 459.5-750.5t20.5 30.83v479.34q0 22.33-20.5 30.83t-36.17-7.17L280-360Zm380-120q0 48.67-23.67 89.17-23.66 40.5-65.33 63.16-8.67 4.67-16.5-.5-7.83-5.16-7.83-14.5v-276q0-9.33 7.83-14.5 7.83-5.16 16.5-.5 41.67 23 65.33 64.34Q660-528 660-480Z"/>
+                            </svg>
+                        </div>
+                    </div>
+
+
+                    <div id="volumeDiv">
+                        <div class="volumeDivH">
+                            <input id="volumeRange" type="range" min="0" step="0.01">
+                            <div id="volumeTooltip"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- RIGHT -->
+            
+        </div><!-- mediaButtonsDiv -->
+
+
+
+    </div><!----------------------------/PLAY BAR------------------------------>
+
+
+    <div id="songContextMenu" class="context-menu">
+        <div id="contextSongName" class="ctx-title"></div>
+        <div class="ctx-separator"></div>
+        <div class="ctx-item" data-action="play">Play</div>
+        <div class="ctx-item notQueueOnly" data-action="addQueue">Add to queue</div>
+        <div class="ctx-item queueOnly" data-action="removeQueue">Remove from Queue</div>
+        <div id="ctxSongAddFav" class="ctx-item" data-action="addFav">Add to favorites</div>
+        <div class="ctx-item" data-action="addPlaylist">Add to playlist</div>
+        <div class="ctx-separator"></div>
+        <div class="ctx-item" data-action="showExplorer">Show in File Explorer</div>
+        <div class="ctx-item" data-action="info">Info</div>
+        <div class="ctx-item" data-action="goAlbum">Go to Album</div>
+        <div class="ctx-item" data-action="delete">Delete</div>
+    </div>
+
+    <div id="videoContextMenu" class="context-menu">
+        <div id="contextVideoName" class="ctx-title"></div>
+        <div class="ctx-separator"></div>
+        <div class="ctx-item" data-action="play">Play</div>
+        <div class="ctx-separator"></div>
+        <div class="ctx-item" data-action="showExplorer">Show in File Explorer</div>
+        <div class="ctx-item" data-action="info">Info</div>
+        <div class="ctx-item" data-action="delete">Delete</div>
+    </div>
+
+    <div id="folderContextMenu" class="context-menu">
+        <div class="ctx-title" id="ctxFolderName"></div>
+        <div class="ctx-separator"></div>
+        <div class="ctx-item" id="ctxOpenFolder">
+            <span class="ctx-icon">📂</span> Open in File Explorer
+        </div>
+        <div class="ctx-item" id="ctxRemoveFolder">
+            <span class="ctx-icon">❌</span> Remove Folder
+        </div>
+    </div>
+
+    <div id="playlistContextMenu" class="context-menu">
+        <div id="ctxPlaylistTitle" class="ctx-title"></div>
+        <div class="ctx-separator"></div>
+        <div class="ctx-item" data-action="play">Play All</div>
+        <div class="ctx-item" data-action="shufflePlay">Shuffle and Play</div>
+        <div class="ctx-item" data-action="addQueue">Add to queue</div>
+        <div class="ctx-separator" id="playlistCtxDivider"></div>
+        <div class="ctx-item" data-action="editPL">Edit Playlist</div>
+        <div class="ctx-separator"></div>
+        <div class="ctx-item" data-action="exportPL">Export Playlist</div>
+        <div class="ctx-separator" id="playlistCtxDivider2"></div>
+        <div class="ctx-item" data-action="delete">Delete Playlist</div>
+    </div>
+
+    <div id="mediaContextMenu" class="context-menu">
+        <div id="ctxMediaTitle" class="ctx-title"></div>
+        <div class="ctx-separator"></div>
+        <div class="ctx-item" data-action="playAll">Play All</div>
+        <div class="ctx-item" data-action="shufflePlay">Shuffle and Play</div>
+        <div class="ctx-item" data-action="addQueue">Add to Queue</div>
+        <div class="ctx-separator"></div>
+        <div class="ctx-item" data-action="savePL">Save as Playlist</div>
+        <div class="ctx-item" data-action="addPL">Add to a Playlist</div>
+    </div>
+
+    <!---------------------------- ADD NEW PLAYLIST ---------------------------------->
+    <div id="inputDlgPL" class="">
+        <div id="dragInputPL" class="windowTop2">
+            <span id="" class="inputDlgPL_Title">New Playlist</span>
+            <div id="inputDlgCloseBtnPL" class="closeBtn">
+                <svg class="xBtn" viewBox="0 -960 960 960">
+                    <path d="M480-424 284-228q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536-480l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480-424Z"/>
+                </svg>
+            </div>
+        </div>
+        <div class="inputDlg_Content">
+            <div class="inputDlgContentDiv">
+                <img id="inputAlbumImgPL" src="images/albumph.png" alt="">
+                <div id="inputImgSelectBtnPL" class="buttonStyle">Select Image</div>
+                <input id="inputDlgInputPL" class="inputDlgInput" type="text" placeholder="Playlist Name" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+            </div>
+        </div>  
+        <div class="inputDlgBtns">
+            <button id="inputDlgOkPL" class="buttonStyle inputBtns" type="">Create Playlist</button>
+            <button id="inputDlgCancelPL" class="buttonStyle inputBtns" type="">Cancel</button>
+        </div>
+    </div>
+    <!---------------------- /ADD NEW PLAYLIST ----------------------->
+
+    <!---------------------------- CONFIRM DIALOG ---------------------------------->
+    
+    <div id="confirmDlg" class="">
+        <div id="dragConfirm" class="confirmWindowTop">
+            <span id="confirmDlg_Title" class="">Confirmation</span>
+            <div id="confirmDlgCloseBtn" class="confirmCloseBtn">
+                <svg class="xBtn" viewBox="0 -960 960 960">
+                    <path d="M480-424 284-228q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536-480l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480-424Z"/>
+                </svg>
+            </div>
+        </div>
+        <div class="confirmDlg_Content">
+            <span id="confirmText" class=""></span>
+        </div>  
+        <div id="" class="confirmDlg_Buttons">
+            <button id="confirmOk" class="buttonStyle inputBtns" type="">OK</button>
+            <button id="confirmCancel" class="buttonStyle inputBtns" type="">Cancel</button>
+        </div>
+    </div>
+
+    <!---------------------- /CONFIRM DIALOG ----------------------->
+
+
+    <!------------------ Add Queue To Playlist Dialog ---------------->
+    <div id="addQueueToPlaylistDlg" class="">
+        <div id="dragAddToPlaylist" class="addToPlaylistWindowTop">
+            <span id="addToPlaylistDlg_Title" class="">Select Playlist(s)</span>
+            <div id="addToPlaylistDlgCloseBtn" class="AddToPlaylistCloseBtn">
+                <svg class="xBtn" viewBox="0 -960 960 960">
+                    <path d="M480-424 284-228q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536-480l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480-424Z"/>
+                </svg>
+            </div>
+        </div>
+        <div class="addToPlaylistDlg_Content">
+            <div id="addQueueToPlaylist_List" class="">
+            </div>
+        </div>
+        <div class="addToPlaylistDlg_Buttons">
+            <button id="addQueueToPlaylist_CancelBtn" class="buttonStyle">Cancel</button>
+            <button id="addQueueToPlaylist_AddBtn" class="buttonStyle">Add to Playlist(s)</button>
+        </div>
+    </div>
+    <!------------------ /Add Queue To Playlist Dialog ---------------->
+
+    <!------------------ Add Song To Playlist Dialog ---------------->
+    <div id="addSongToPlaylistDlg" class="">
+        <div id="dragAddSongToPlaylist" class="addToPlaylistWindowTop">
+            <span class="">Select Playlist(s)</span>
+            <div id="addSongToPlaylistDlgCloseBtn" class="AddToPlaylistCloseBtn">
+                <svg class="xBtn" viewBox="0 -960 960 960">
+                    <path d="M480-424 284-228q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536-480l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480-424Z"/>
+                </svg>
+            </div>
+        </div>
+        <div class="addToPlaylistDlg_Content">
+            <div id="addSongToPlaylist_List"></div>
+        </div>
+        <div class="addToPlaylistDlg_Buttons">
+            <button id="addSongToPlaylist_CancelBtn" class="buttonStyle">Cancel</button>
+            <button id="addSongToPlaylist_AddBtn" class="buttonStyle">Add to Playlist(s)</button>
+        </div>
+    </div>
+    <!------------------ /Add Song To Playlist Dialog ---------------->
+
+
+    <!----------------- HOTKEYS / KEYBIND SELECTOR DIALOG ------------------>
+
+    <div id="keyBackdrop" class="backdrop"></div>
+    
+    <div id="keySelWin" class="">
+
+        <div id="" class="keyWindowTop">
+            <span id="" class=""></span>
+            <div id="keySelWinCloseBtn" class="closeBtn">
+                <svg class="xBtn" viewBox="0 -960 960 960">
+                    <path d="M480-424 284-228q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536-480l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480-424Z"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="inputDlg_Content">
+            <div id="" class="">
+                <div class="keySelWinNameDiv">
+                    <span id="keySelName"></span>
+                </div>
+                <div class="keySelWinContentDiv">
+                    <span>Type the Key</span>
+                </div>
+                <div class="keySelWinErrorDiv">
+                    <span id="keySelErrorMsg"></span>
+                </div>
+            </div>
+        </div>  
+
+        <div class="inputDlgBtns">
+            <button id="keyWinSelUnbindBtn" class="addInputBtn" type="">Unbind</button>
+            <button id="keyWinSelCancelBtn" class="inputCancelBtn" type="">Cancel</button>
+        </div>
+
+    </div>
+
+    <!----------------- /HOTKEYS / KEYBIND SELECTOR DIALOG ------------------>
+
+
+    <!-------------------------ABOUT WINDOW-------------------------------->
+    <div id="aboutWindow" class="">
+        <div id="dragHandleAbout" class="windowTop2">
+            <span class="windowTitle">About</span>
+            <div id="aboutCloseBtn" class="closeBtn">
+                <svg class="xBtn" viewBox="0 -960 960 960">
+                    <path d="M480-424 284-228q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536-480l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480-424Z"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="aboutContentDiv">
+            <img id="logoCpyFinder" src="images/pplogo.ico" alt="">
+            <div>Pyrus Player 1.0.0</div>
+            <div>2025</div>
+            <div>Created by: Hudson Pear (pyrus)</div>
+            <div class="">
+            <a class="theEmail" href="mailto:coolnewtabpage@gmail.com">
+                coolnewtabpage@gmail.com
+            </a>
+            <span id="copyIcon">📋</span>
+            </div>
+
+            <div id="helpGithub" class="helpGithub">
+                <svg class="imgGithub" width="32" height="32" viewBox="0 0 1024 1024" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" transform="scale(64)" fill=""/>
+                </svg>
+                <span class="textRate">Github</span>
+            </div>
+        </div><!-- ABOUT CONTENT -->
+
+    </div>
+    <!-------------------------/ABOUT WINDOW-------------------------------->
+
+    <!------------------ Equalizer Dialog ---------------->
+    <div id="equalizerDlg" class="">
+        <div id="dragEqualizer" class="windowTop2">
+            <span class="">Equalizer</span>
+            <div id="equalizerCloseBtn" class="closeBtn">
+                <svg class="xBtn" viewBox="0 -960 960 960">
+                    <path d="M480-424 284-228q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536-480l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480-424Z"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="equalizerContent">
+            <div class="eqScale">
+                <span>+12 dB</span>
+                <span>-</span>
+                <span>-</span>
+                <span>-</span>
+                <span>0 dB</span>
+                <span>-</span>
+                <span>-</span>
+                <span>-</span>
+                <span>-12 dB</span>
+            </div>
+            <div class="eqZeroLine"></div>
+            <div id="eqSliders"></div>
+        </div>
+
+        <div class="eqBtns">
+            <div class="eqPresetRow">
+                <label for="eqPresetSelect">Preset</label>
+                <select id="eqPresetSelect">
+                    <option value="">Custom</option>
+                </select>
+            </div>
+            <div id="eQBtnsDiv">
+                <button id="eqResetBtn" class="buttonStyle">Reset</button>
+                <button id="eqCloseBtn" class="buttonStyle" type="">Close</button>
+            </div>
+        </div>
+    </div>
+    <!------------------ /Equalizer Dialog ---------------->
+
+    <!------------------ CHANGELOG Dialog ---------------->
+    <div id="changLogDlg" class="">
+        <div id="dragChange" class="windowTop2">
+            <span>Changelog</span>
+            <div class="closeBtn" id="closeChangeLog">
+                <svg class="xBtn" viewBox="0 -960 960 960">
+                    <path d="M480-424 284-228q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536-480l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480-424Z"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="changeContent">
+            <pre id="changelogContent">
+            Loading changelog...
+            </pre>
+        </div>
+
+        <div class="changeBtns">
+            <button id="changeCloseBtn" class="buttonStyle" type="button">Close</button>
+        </div>
+    </div>
+    <!------------------ /CHANGELOG Dialog ---------------->
+
+    <!------------------ ID3 INFO Dialog ---------------->
+    <div id="id3Dlg" class="">
+        <div id="dragId3" class="windowTop2">
+            <span>File Info</span>
+            <div id="closeId3" class="closeBtn">
+                <svg class="xBtn" viewBox="0 -960 960 960">
+                    <path d="M480-424 284-228q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536-480l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480-424Z"/>
+                </svg>
+            </div>
+        </div>
+        <div class="id3Content">
+        </div>
+        <div class="id3Btns">
+            <button id="id3CloseBtn" class="buttonStyle" type="button">Close</button>
+        </div>
+    </div>
+    <!------------------ /ID3 INFO Dialog ---------------->
+
+    <!------------------ VIDEO INFO Dialog ---------------->
+    <div id="vidInfoDlg" class="">
+        <div id="dragVidInfo" class="windowTop2">
+            <span>Video Info</span>
+            <div id="closeVidInfo" class="closeBtn">
+                <svg class="xBtn" viewBox="0 -960 960 960">
+                    <path d="M480-424 284-228q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536-480l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480-424Z"/>
+                </svg>
+            </div>
+        </div>
+        <div class="vidInfoContent">
+        </div>
+        <div class="id3Btns">
+            <button id="vidInfoCloseBtn" class="buttonStyle" type="button">Close</button>
+        </div>
+    </div>
+    <!------------------ VIDEO INFO Dialog ---------------->
+
+    <input
+        type="file"
+        id="fileInput"
+        accept=".mp3,.wav,.ogg,.flac,.aac,.m4a,.mp4,.mkv,.webm,.mov,.m4v, audio/*, video/*"
+    >
+
+    <audio id="audio"></audio>
+    
+    <script src="jsmediatags.min.js"></script>
+    <script src="renderer.js"></script>
+</body>
+</html>
