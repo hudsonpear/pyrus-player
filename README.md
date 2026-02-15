@@ -44,6 +44,10 @@ Available for Windows
 
 ## Screenshots
 
+![screenshot1](https://i.imgur.com/pMsRw1h.png)
+![screenshot2](https://i.imgur.com/mDovBmq.png)
+![screenshot3](https://i.imgur.com/mgFs4UM.png)
+
 ## How to Build
 
 Install dependencies with:
