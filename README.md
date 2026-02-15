@@ -16,7 +16,6 @@
 - 🔊 Audio Boost - Up to 600% volume!
 - 📁 Folder Watching - Monitors added folders and subfolders, automatically detects new files, renames, and deletions. 
 - 📑 Queue Management - Build and manage your playing queue
-- ↳↰ Shuffle & Repeat - Multiple repeat modes (Off, Playlist, Single)
 - 📜 Custom Playlists - Create unlimited playlists
 - ❤️ Favorites System - Mark and track your favorite tracks
 - 📋 Play History - Never lose track of what you've listened to
