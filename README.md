@@ -41,3 +41,19 @@
 Available for Windows
 
 [Download Latest Release](https://github.com/hudsonpear/pyrus-player/releases)
+
+## Screenshots
+
+## How to Build
+
+Install dependencies with:
+
+```
+npm install
+```
+
+then run with:
+
+```
+npm start
+```
